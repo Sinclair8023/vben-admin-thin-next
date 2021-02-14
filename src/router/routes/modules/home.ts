@@ -23,6 +23,16 @@ const dashboard: AppRouteModule = {
         icon: 'bx:bx-home',
       },
     },
+    {
+      path: 'house',
+      name: 'house',
+      component: () => import('/@/views/dashboard/house/index.vue'),
+      meta: {
+        title: 'house',
+        affix: true,
+        icon: 'bx:bx-home',
+      },
+    },
   ],
 };
 

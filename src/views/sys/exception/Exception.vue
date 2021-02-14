@@ -1,7 +1,6 @@
 <script lang="tsx">
 import type { PropType } from 'vue';
 
-import { Result } from 'ant-design-vue';
 import { defineComponent, ref, computed, unref } from 'vue';
 
 import { ExceptionEnum } from '/@/enums/exceptionEnum';
@@ -115,23 +114,16 @@ export default defineComponent({
 
     return () => {
       const { title, subTitle, btnText, icon, handler, status } = unref(getMapValue) || {};
+      console.log(status);
       return (
-        <Result
-          class={prefixCls}
-          status={status as any}
-          title={props.title || title}
-          sub-title={props.subTitle || subTitle}
-        >
-          {{
-            extra: () =>
-              btnText && (
-                <el-button type="primary" onClick={handler}>
-                  {() => btnText}
-                </el-button>
-              ),
-            icon: () => (icon ? <img src={icon} /> : null),
-          }}
-        </Result>
+        <div class={prefixCls}>
+          {icon ? <img src={icon} /> : null}
+          <div class={`${prefixCls}__title`}>{props.title || title}</div>
+          <div class={`${prefixCls}__subtitle`}>{props.subTitle || subTitle}</div>
+          <el-button type="primary" onClick={handler}>
+            {btnText}
+          </el-button>
+        </div>
       );
     };
   },
@@ -144,12 +136,21 @@ export default defineComponent({
   display: flex;
   align-items: center;
   flex-direction: column;
-
-  .ant-result-icon {
-    img {
-      max-width: 400px;
-      max-height: 300px;
-    }
+  &__title {
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 24px;
+    line-height: 1.8;
+    text-align: center;
+  }
+  &__subtitle {
+    color: rgba(0, 0, 0, 0.45);
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: center;
+  }
+  img {
+    max-width: 400px;
+    max-height: 300px;
   }
 }
 </style>

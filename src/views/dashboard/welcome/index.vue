@@ -1,91 +1,55 @@
 <template>
-  <PageWrapper title="自定义组件示例">
-    <CollapseContainer title="自定义表单">
-      <BasicForm
-        @register="register"
-        @submit="handleSubmit"
-      >
-        <template #f3="{ model, field }">
-          <el-input
-            v-model:value="model[field]"
-            placeholder="自定义slot"
-          />
-        </template>
-      </BasicForm>
-    </CollapseContainer>
-  </PageWrapper>
+  <el-table
+    :data="tableData"
+    style="width: 100%"
+  >
+    <el-table-column
+      prop="date"
+      label="日期"
+      width="180"
+    >
+    </el-table-column>
+    <el-table-column
+      prop="name"
+      label="姓名"
+      width="180"
+    >
+    </el-table-column>
+    <el-table-column
+      prop="address"
+      label="地址"
+    >
+    </el-table-column>
+  </el-table>
 </template>
-<script lang="ts">
-import { defineComponent, h } from 'vue';
-import { BasicForm, FormSchema, useForm } from '/@/components/Form/index';
-import { CollapseContainer } from '/@/components/Container/index';
-import { useMessage } from '/@/hooks/web/useMessage';
-import { ElInput } from 'element-plus';
-import { PageWrapper } from '/@/components/Page';
-const schemas: FormSchema[] = [
-  {
-    field: 'field1',
-    component: 'Input',
-    label: 'render方式',
-    helpMessage: 'field1',
-    colProps: {
-      span: 12,
-    },
-    rules: [{ required: true }],
-    render: ({ model, field }) => {
-      return h(ElInput, {
-        placeholder: '请输入',
-        value: model[field],
-        onChange: (e: ChangeEvent) => {
-          model[field] = e.target.value;
-        },
-      });
-    },
-  },
-  {
-    field: 'field2',
-    component: 'Input',
-    label: 'render组件slot',
-    colProps: {
-      span: 12,
-    },
-    rules: [{ required: true }],
-    renderComponentContent: () => {
-      return {
-        suffix: () => 'suffix',
-      };
-    },
-  },
-  {
-    field: 'field3',
-    component: 'Input',
-    label: '自定义Slot',
-    slot: 'f3',
-    colProps: {
-      span: 12,
-    },
-    rules: [{ required: true }],
-  },
-];
-export default defineComponent({
-  components: { BasicForm, CollapseContainer, PageWrapper },
-  setup() {
-    const { createMessage } = useMessage();
-    const [register, { setProps }] = useForm({
-      labelWidth: 120,
-      schemas,
-      actionColOptions: {
-        span: 24,
-      },
-    });
+
+<script>
+export default {
+  data() {
     return {
-      register,
-      schemas,
-      handleSubmit: (values: any) => {
-        createMessage.success('click search,values:' + JSON.stringify(values));
-      },
-      setProps,
+      tableData: [
+        {
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄',
+        },
+        {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1517 弄',
+        },
+        {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1519 弄',
+        },
+        {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1516 弄',
+        },
+      ],
     };
   },
-});
+};
 </script>

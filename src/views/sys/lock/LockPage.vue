@@ -38,7 +38,7 @@
           </div>
           <el-input
             :placeholder="t('sys.lock.placeholder')"
-            v-model:value="password"
+            v-model="password"
             show-password
           />
           <span
@@ -48,33 +48,33 @@
             {{ t('sys.lock.alert') }}
           </span>
           <div :class="`${prefixCls}-entry__footer`">
-            <a-button
-              type="link"
+            <el-button
+              type="text"
               size="small"
               class="mt-2 mr-2"
               :disabled="loadingRef"
               @click="handleShowForm(true)"
             >
               {{ t('common.back') }}
-            </a-button>
-            <a-button
-              type="link"
+            </el-button>
+            <el-button
+              type="text"
               size="small"
               class="mt-2 mr-2"
               :disabled="loadingRef"
               @click="goLogin"
             >
               {{ t('sys.lock.backToLogin') }}
-            </a-button>
-            <a-button
+            </el-button>
+            <el-button
               class="mt-2"
-              type="link"
+              type="text"
               size="small"
               @click="unLock()"
               :loading="loadingRef"
             >
               {{ t('sys.lock.entry') }}
-            </a-button>
+            </el-button>
           </div>
         </div>
       </div>

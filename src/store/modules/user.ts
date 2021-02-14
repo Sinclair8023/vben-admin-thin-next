@@ -145,16 +145,17 @@ class User extends VuexModule {
    */
   @Action
   async confirmLoginOut() {
-    const { createConfirm } = useMessage();
+    const { createWarningModal } = useMessage();
     const { t } = useI18n();
-    createConfirm({
-      iconType: 'warning',
+    createWarningModal({
       title: t('sys.app.loginOutTip'),
-      content: t('sys.app.loginOutMessage'),
-      onOk: async () => {
-        await this.loginOut(true);
-      },
-    });
+      message: t('sys.app.loginOutMessage'),
+      showCancelButton: true,
+    }).then(() => {
+      this.loginOut(true)
+    }).catch(() => {
+      console.log('cancel logout')
+    })
   }
 }
 export const userStore = getModule<User>(User);

@@ -56,7 +56,7 @@ const transform: AxiosTransform = {
       if (message) {
         // errorMessageMode=‘modal’的时候会显示modal错误弹窗，而不是消息提示，用于一些比较重要的错误
         if (options.errorMessageMode === 'modal') {
-          createErrorModal({ title: t('sys.api.errorTip'), content: message });
+          createErrorModal({ title: t('sys.api.errorTip'), message });
         } else if (options.errorMessageMode === 'message') {
           createMessage.error(message);
         }
@@ -86,7 +86,7 @@ const transform: AxiosTransform = {
       const timeoutMsg = t('sys.api.timeoutMessage');
       createErrorModal({
         title: t('sys.api.operationFailed'),
-        content: timeoutMsg,
+        message: timeoutMsg,
       });
       Promise.reject(new Error(timeoutMsg));
       return errorResult;
@@ -161,7 +161,7 @@ const transform: AxiosTransform = {
       if (err?.includes('Network Error')) {
         createErrorModal({
           title: t('sys.api.networkException'),
-          content: t('sys.api.networkExceptionMsg'),
+          message: t('sys.api.networkExceptionMsg'),
         });
       }
     } catch (error) {

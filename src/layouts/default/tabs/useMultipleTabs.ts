@@ -50,25 +50,25 @@ export function useTabsDrag(affixTextList: string[]) {
   const { multiTabsSetting } = useProjectSetting();
 
   const { prefixCls } = useDesign('multiple-tabs');
-  nextTick(() => {
-    if (!multiTabsSetting.canDrag) return;
-    const el = document.querySelectorAll(`.${prefixCls} .ant-tabs-nav > div`)?.[0] as HTMLElement;
-    const { initSortable } = useSortable(el, {
-      filter: (e: ChangeEvent) => {
-        const text = e?.target?.innerText;
-        if (!text) return false;
-        return affixTextList.includes(text);
-      },
-      onEnd: (evt) => {
-        const { oldIndex, newIndex } = evt;
+  // nextTick(() => {
+  //   if (!multiTabsSetting.canDrag) return;
+  //   const el = document.querySelectorAll(`.${prefixCls} .ant-tabs-nav > div`)?.[0] as HTMLElement;
+  //   const { initSortable } = useSortable(el, {
+  //     filter: (e: ChangeEvent) => {
+  //       const text = e?.target?.innerText;
+  //       if (!text) return false;
+  //       return affixTextList.includes(text);
+  //     },
+  //     onEnd: (evt) => {
+  //       const { oldIndex, newIndex } = evt;
 
-        if (isNullAndUnDef(oldIndex) || isNullAndUnDef(newIndex) || oldIndex === newIndex) {
-          return;
-        }
+  //       if (isNullAndUnDef(oldIndex) || isNullAndUnDef(newIndex) || oldIndex === newIndex) {
+  //         return;
+  //       }
 
-        tabStore.commitSortTabs({ oldIndex, newIndex });
-      },
-    });
-    initSortable();
-  });
+  //       tabStore.commitSortTabs({ oldIndex, newIndex });
+  //     },
+  //   });
+  //   initSortable();
+  // });
 }

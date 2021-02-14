@@ -136,9 +136,8 @@ export default defineComponent({
         );
         if (userInfo) {
           notification.success({
-            message: t('sys.login.loginSuccessTitle'),
-            description: `${t('sys.login.loginSuccessDesc')}: ${userInfo.realName}`,
-            duration: 3,
+            title: t('sys.login.loginSuccessTitle'),
+            message: `${t('sys.login.loginSuccessDesc')}: ${userInfo.realName}`,
           });
         }
       } catch (error) {

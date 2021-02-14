@@ -1,10 +1,9 @@
-import type { ModalFunc, ModalFuncProps } from 'ant-design-vue/lib/modal/Modal';
-
-import { Modal, message as Message, notification } from 'ant-design-vue';
-import { InfoCircleFilled, CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons-vue';
-
+import { h } from 'vue'
+import { ElMessageBox, ElMessage, ElNotification, ElLoading } from 'element-plus';
 import { ArgsProps, ConfigProps } from 'ant-design-vue/lib/notification';
 import { useI18n } from './useI18n';
+import MessageBox from 'element-plus/lib/el-message-box';
+import type { ElMessageBoxOptions } from 'element-plus/lib/el-message-box/src/message-box.type';
 
 export interface NotifyApi {
   info(config: ArgsProps): void;
@@ -20,98 +19,54 @@ export interface NotifyApi {
 
 export declare type NotificationPlacement = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 export declare type IconType = 'success' | 'info' | 'error' | 'warning';
-export interface ModalOptionsEx extends Omit<ModalFuncProps, 'iconType'> {
-  iconType: 'warning' | 'success' | 'error' | 'info';
-}
-export type ModalOptionsPartial = Partial<ModalOptionsEx> & Pick<ModalOptionsEx, 'content'>;
 
-interface ConfirmOptions {
-  info: ModalFunc;
-  success: ModalFunc;
-  error: ModalFunc;
-  warn: ModalFunc;
-  warning: ModalFunc;
-}
-
-function getIcon(iconType: string) {
-  if (iconType === 'warning') {
-    return <InfoCircleFilled class="modal-icon-warning" />;
-  } else if (iconType === 'success') {
-    return <CheckCircleFilled class="modal-icon-success" />;
-  } else if (iconType === 'info') {
-    return <InfoCircleFilled class="modal-icon-info" />;
-  } else {
-    return <CloseCircleFilled class="modal-icon-error" />;
-  }
-}
-
-function renderContent({ content }: Pick<ModalOptionsEx, 'content'>) {
-  return <div innerHTML={`<div>${content as string}</div>`}></div>;
-}
-
-/**
- * @description: Create confirmation box
- */
-function createConfirm(options: ModalOptionsEx): ConfirmOptions {
-  const iconType = options.iconType || 'warning';
-  Reflect.deleteProperty(options, 'iconType');
-  const opt: ModalFuncProps = {
-    centered: true,
-    icon: getIcon(iconType),
-    ...options,
-  };
-  return (Modal.confirm(opt) as unknown) as ConfirmOptions;
+function renderContent({ message }: Pick<ElMessageBoxOptions, 'message'>) {
+  return h(<div innerHTML={`<div>${message as string}</div>`}></div>)
 }
 
 const getBaseOptions = () => {
   const { t } = useI18n();
   return {
-    okText: t('common.okText'),
-    centered: true,
+    confirmButtonText: t('common.okText'),
   };
 };
 
-function createModalOptions(options: ModalOptionsPartial, icon: string): ModalOptionsPartial {
+function createModalOptions(options: ElMessageBoxOptions): ElMessageBoxOptions  {
   return {
     ...getBaseOptions(),
     ...options,
-    content: renderContent(options),
-    icon: getIcon(icon),
+    message: renderContent(options),
   };
 }
 
-function createSuccessModal(options: ModalOptionsPartial) {
-  return Modal.success(createModalOptions(options, 'success'));
+function createSuccessModal(options: ElMessageBoxOptions) {
+  return MessageBox(createModalOptions({ ...options, type: 'success'}))
 }
 
-function createErrorModal(options: ModalOptionsPartial) {
-  return Modal.error(createModalOptions(options, 'close'));
+function createErrorModal(options: ElMessageBoxOptions) {
+  return MessageBox(createModalOptions({ ...options, type: 'error'}))
 }
 
-function createInfoModal(options: ModalOptionsPartial) {
-  return Modal.info(createModalOptions(options, 'info'));
+function createInfoModal(options: ElMessageBoxOptions) {
+    return MessageBox(createModalOptions({ ...options, type: 'info'}))
 }
 
-function createWarningModal(options: ModalOptionsPartial) {
-  return Modal.warning(createModalOptions(options, 'warning'));
+function createWarningModal(options: ElMessageBoxOptions) {
+   return MessageBox(createModalOptions({ ...options, type: 'warning'}))
 }
-
-notification.config({
-  placement: 'topRight',
-  duration: 3,
-});
 
 /**
  * @description: message
  */
 export function useMessage() {
   return {
-    createMessage: Message,
-    notification: notification as NotifyApi,
-    createConfirm: createConfirm,
+    createMessage: ElMessage,
+    notification: ElNotification,
+    createConfirm: ElMessageBox,
     createSuccessModal,
     createErrorModal,
     createInfoModal,
     createWarningModal,
+    createLoading: ElLoading
   };
 }

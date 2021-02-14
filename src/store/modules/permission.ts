@@ -22,7 +22,7 @@ import { useMessage } from '/@/hooks/web/useMessage';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { PAGE_NOT_FOUND_ROUTE, ERROR_LOG_ROUTE } from '/@/router/constant';
 
-const { createMessage } = useMessage();
+const { createMessage, createLoading } = useMessage();
 const NAME = 'permission';
 hotModuleUnregisterModule(NAME);
 @Module({ dynamic: true, namespaced: true, store, name: NAME })
@@ -101,9 +101,8 @@ class Permission extends VuexModule {
       });
       //  如果确定不需要做后台动态权限,请将下面整个判断注释
     } else if (permissionMode === PermissionModeEnum.BACK) {
-      createMessage.loading({
-        content: t('sys.app.menuLoading'),
-        duration: 1,
+      const loading =  createLoading.service({
+        text: t('sys.app.menuLoading'),
       });
       // 这里获取后台路由菜单逻辑自行修改
       const paramId = id || userStore.getUserInfoState.userId;
@@ -111,7 +110,7 @@ class Permission extends VuexModule {
         throw new Error('paramId is undefined!');
       }
       let routeList = (await getMenuListById({ id: paramId })) as AppRouteRecordRaw[];
-
+      loading.close();
       // 动态引入组件
       routeList = transformObjToRoute(routeList);
       //  后台路由转菜单结构
