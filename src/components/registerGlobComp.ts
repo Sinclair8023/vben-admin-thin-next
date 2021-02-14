@@ -1,9 +1,6 @@
 import Icon from './Icon/index';
-import { Button } from './Button';
 import {
   // Need
-  Button as AntButton,
-
   // Optional
   // Select,
   // Alert,
@@ -43,7 +40,7 @@ import {
 
 import { App } from 'vue';
 
-const compList = [Icon, Button, AntButton.Group];
+const compList = [Icon];
 
 export function registerGlobComp(app: App) {
   compList.forEach((comp: any) => {

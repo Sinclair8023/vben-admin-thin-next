@@ -7,7 +7,7 @@ import { defineComponent, nextTick, onMounted, computed, ref, unref, onUnmounted
 
 import Icon from '/@/components/Icon';
 import { Menu, Divider } from 'ant-design-vue';
-
+import { ElMenu, ElMenuItem, ElSubmenu, ElMenuItemGroup } from 'element-plus'
 import { contextMenuProps } from './props';
 
 const prefixCls = 'context-menu';
@@ -75,9 +75,9 @@ export default defineComponent({
         if (!children || children.length === 0) {
           return (
             <>
-              <Menu.Item disabled={disabled} class={`${prefixCls}__item`} key={label}>
+              <ElMenuItem disabled={disabled} class={`${prefixCls}__item`} key={label}>
                 <ItemContent showIcon={props.showIcon} item={item} handler={handleAction} />
-              </Menu.Item>
+              </ElMenuItem>
               {DividerComp}
             </>
           );
@@ -85,14 +85,17 @@ export default defineComponent({
         if (!unref(showRef)) return null;
 
         return (
-          <Menu.SubMenu key={label} disabled={disabled} popupClassName={`${prefixCls}__popup`}>
-            {{
-              title: () => (
-                <ItemContent showIcon={props.showIcon} item={item} handler={handleAction} />
-              ),
-              default: () => renderMenuItem(children),
-            }}
-          </Menu.SubMenu>
+          <ElSubmenu
+            key={label}
+            index={label}
+            disabled={disabled}
+            popupClassName={`${prefixCls}__popup`}
+            title={<ItemContent showIcon={props.showIcon} item={item} handler={handleAction} />}
+          >
+            <ElMenuItemGroup>
+              {renderMenuItem(children)}
+            </ElMenuItemGroup>
+          </ElSubmenu>
         );
       });
     }
@@ -100,15 +103,15 @@ export default defineComponent({
       const { items } = props;
       if (!unref(showRef)) return null;
       return (
-        <Menu
-          inlineIndent={12}
+        <ElMenu
           mode="vertical"
           class={prefixCls}
           ref={wrapRef}
           style={unref(getStyle)}
+          collapse
         >
           {renderMenuItem(items)}
-        </Menu>
+        </ElMenu>
       );
     };
   },

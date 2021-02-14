@@ -2,10 +2,8 @@
 import type { CSSProperties, PropType } from 'vue';
 import { defineComponent, computed, unref } from 'vue';
 
-import { Tooltip } from 'ant-design-vue';
 import { InfoCircleOutlined } from '@ant-design/icons-vue';
 
-import { getPopupContainer } from '/@/utils';
 import { isString, isArray } from '/@/utils/is';
 import { getSlot } from '/@/utils/helper/tsxHelper';
 import { propTypes } from '/@/utils/propTypes';
@@ -14,7 +12,6 @@ import { useDesign } from '/@/hooks/web/useDesign';
 
 export default defineComponent({
   name: 'BasicHelp',
-  components: { Tooltip },
   props: {
     // max-width
     maxWidth: propTypes.string.def('600px'),
@@ -88,18 +85,17 @@ export default defineComponent({
 
     return () => {
       return (
-        <Tooltip
-          title={<div style={unref(getWrapStyle)}>{renderTitle()}</div>}
+        <el-tooltip
+          content={<div style={unref(getWrapStyle)}>{renderTitle()}</div>}
           overlayClassName={`${prefixCls}__wrap`}
           autoAdjustOverflow={true}
           overlayStyle={unref(getOverlayStyle)}
           placement={props.placement as 'left'}
-          getPopupContainer={() => getPopupContainer()}
         >
           <span class={prefixCls} style={unref(getMainStyleRef)}>
             {getSlot(slots) || <InfoCircleOutlined />}
           </span>
-        </Tooltip>
+        </el-tooltip>
       );
     };
   },
