@@ -130,8 +130,6 @@ export interface ProjectConfig {
   useOpenBackTop: boolean;
   // 是否可以嵌入iframe页面
   canEmbedIFramePage: boolean;
-  // 切换界面的时候是否删除未关闭的message及notify
-  closeMessageOnSwitch: boolean;
   // 切换界面的时候是否取消已经发送但是未响应的http请求。
   removeAllHttpPending: boolean;
 }

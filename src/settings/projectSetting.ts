@@ -160,16 +160,13 @@ const setting: ProjectConfig = {
   showBreadCrumbIcon: false,
 
   // Use error-handler-plugin
-  useErrorHandle: false,
+  useErrorHandle: true,
 
   // Whether to open back to top
   useOpenBackTop: true,
 
   //  Is it possible to embed iframe pages
   canEmbedIFramePage: true,
-
-  // Whether to delete unclosed messages and notify when switching the interface
-  closeMessageOnSwitch: true,
 
   // Whether to cancel the http request that has been sent but not responded when switching the interface.
   // If it is enabled, I want to overwrite a single interface. Can be set in a separate interface

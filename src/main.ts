@@ -10,11 +10,12 @@ import { setupI18n } from '/@/locales/setupI18n';
 import { registerGlobComp } from '/@/components/registerGlobComp';
 
 import { isDevMode } from '/@/utils/env';
-
+import ElementPlus from 'element-plus'
+import 'element-plus/lib/theme-chalk/index.css';
 import '/@/design/index.less';
 
 const app = createApp(App);
-
+app.use(ElementPlus)
 registerGlobComp(app);
 
 // Multilingual configuration

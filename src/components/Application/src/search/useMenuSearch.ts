@@ -57,10 +57,9 @@ export function useMenuSearch(refs: Ref<HTMLElement[]>, scrollWrap: Ref<ElRef>, 
     });
   });
 
-  function search(e: ChangeEvent) {
-    e?.stopPropagation();
-    const key = e.target.value;
+  function search(key: string) {
     keyword.value = key.trim();
+    console.log('search!!!', keyword)
     if (!key) {
       searchResult.value = [];
       return;

@@ -20,7 +20,7 @@ import { transformRouteToMenu } from '/@/router/helper/menuHelper';
 import { useMessage } from '/@/hooks/web/useMessage';
 // import { warn } from '/@/utils/log';
 import { useI18n } from '/@/hooks/web/useI18n';
-import { PAGE_NOT_FOUND_ROUTE } from '/@/router/constant';
+import { PAGE_NOT_FOUND_ROUTE, ERROR_LOG_ROUTE } from '/@/router/constant';
 
 const { createMessage } = useMessage();
 const NAME = 'permission';
@@ -83,7 +83,7 @@ class Permission extends VuexModule {
     this.lastBuildMenuTimeState = 0;
   }
 
-  @Action
+   @Action
   async buildRoutesAction(id?: number | string): Promise<AppRouteRecordRaw[]> {
     const { t } = useI18n();
     let routes: AppRouteRecordRaw[] = [];
@@ -121,6 +121,7 @@ class Permission extends VuexModule {
 
       routes = [PAGE_NOT_FOUND_ROUTE, ...routeList];
     }
+    routes.push(ERROR_LOG_ROUTE);
     return routes;
   }
 }

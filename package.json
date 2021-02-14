@@ -30,6 +30,7 @@
     "ant-design-vue": "2.0.0",
     "axios": "^0.21.1",
     "crypto-es": "^1.2.6",
+    "element-plus": "^1.0.2-beta.32",
     "lodash-es": "^4.17.20",
     "mockjs": "^1.1.0",
     "nprogress": "^0.2.0",

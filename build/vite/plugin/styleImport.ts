@@ -4,9 +4,8 @@
  */
 
 import styleImport from 'vite-plugin-style-import';
-
 export function configStyleImportPlugin() {
-  const pwaPlugin = styleImport({
+  const stylePlugin = styleImport({
     libs: [
       {
         libraryName: 'ant-design-vue',
@@ -17,5 +16,5 @@ export function configStyleImportPlugin() {
       },
     ],
   });
-  return pwaPlugin;
+  return stylePlugin;
 }
