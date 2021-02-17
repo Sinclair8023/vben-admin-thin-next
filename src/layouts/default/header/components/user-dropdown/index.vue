@@ -11,20 +11,24 @@
     </span>
 
     <template #dropdown>
-      <Menu @click="handleMenuClick">
-        <MenuItem
+      <el-dropdown-menu @command="handleMenuClick">
+        <el-dropdown-item
           key="doc"
-          :text="t('layout.header.dropdownItemDoc')"
-          icon="gg:loadbar-doc"
           v-if="getShowDoc"
-        />
-        <MenuDivider />
-        <MenuItem
+          command="doc"
+        >
+          <Icon icon="gg:loadbar-doc" />
+          {{t('layout.header.dropdownItemDoc')}}
+        </el-dropdown-item>
+        <el-dropdown-item
+          command="loginOut"
           key="loginOut"
-          :text="t('layout.header.dropdownItemLoginOut')"
-          icon="carbon:power"
-        />
-      </Menu>
+        >
+          <Icon icon="carbon:power" />
+          {{t('layout.header.dropdownItemLoginOut')}}
+        </el-dropdown-item>
+
+      </el-dropdown-menu>
     </template>
   </el-dropdown>
 </template>
@@ -33,7 +37,7 @@
 import { Menu } from 'ant-design-vue';
 
 import { defineComponent, computed } from 'vue';
-
+import { Icon } from '/@/components/Icon';
 // res
 
 import { userStore } from '/@/store/modules/user';
@@ -58,6 +62,7 @@ export default defineComponent({
     Menu,
     MenuItem: createAsyncComponent(() => import('./DropMenuItem.vue')),
     MenuDivider: Menu.Divider,
+    Icon,
   },
   props: {
     theme: propTypes.oneOf(['dark', 'light']),
@@ -82,8 +87,8 @@ export default defineComponent({
       openWindow(DOC_URL);
     }
 
-    function handleMenuClick(e: { key: MenuEvent }) {
-      switch (e.key) {
+    function handleMenuClick(key: MenuEvent) {
+      switch (key) {
         case 'loginOut':
           handleLoginOut();
           break;

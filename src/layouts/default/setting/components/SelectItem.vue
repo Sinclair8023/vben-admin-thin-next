@@ -4,7 +4,7 @@
     <el-select
       :class="`${prefixCls}-select`"
       @change="handleChange"
-      :modelValue="def"
+      :model-value="def"
       :disabled="disabled"
       size="mini"
     >
