@@ -24,7 +24,7 @@
           command="loginOut"
           key="loginOut"
         >
-          <Icon icon="carbon:power" />
+          <Icon icon="ion:power-outline" />
           {{t('layout.header.dropdownItemLoginOut')}}
         </el-dropdown-item>
 

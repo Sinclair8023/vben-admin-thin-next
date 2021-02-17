@@ -18,6 +18,7 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import { useI18n } from '/@/hooks/web/useI18n';
+import { Icon } from '/@/components/Icon';
 import { BugOutlined } from '@ant-design/icons-vue';
 import { errorStore } from '/@/store/modules/error';
 import { PageEnum } from '/@/enums/pageEnum';

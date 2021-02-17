@@ -3,13 +3,13 @@
     <el-tooltip
       :content="t('layout.header.tooltipLock')"
       placement="bottom"
-      show-after="0.5"
+      :show-after="500"
     >
       <LockOutlined />
     </el-tooltip>
     <LockAction
-      :show="showModalRef"
-      @close="handleClosModal"
+      :show="show"
+      @close="handleCloseModal"
     />
   </span>
 </template>
@@ -17,7 +17,6 @@
 import { defineComponent } from 'vue';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { LockOutlined } from '@ant-design/icons-vue';
-import { useModal } from '/@/components/Modal';
 import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent';
 export default defineComponent({
   name: 'Lock',
@@ -25,23 +24,23 @@ export default defineComponent({
     LockOutlined,
     LockAction: createAsyncComponent(() => import('./LockModal.vue')),
   },
-
+  data() {
+    return {
+      show: false,
+    };
+  },
+  methods: {
+    handleCloseModal() {
+      this.show = false;
+    },
+    handleLock() {
+      this.show = true;
+    },
+  },
   setup() {
     const { t } = useI18n();
-    const showModalRef = ref(boolean)(false);
-
-    function handleLock() {
-      showModalRef.value = true;
-    }
-    function handleClosModal() {
-      showModalRef.value = false;
-    }
     return {
       t,
-      register,
-      handleLock,
-      showModalRef,
-      handleClosModal,
     };
   },
 });

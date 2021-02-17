@@ -1,9 +1,8 @@
 <template>
   <el-dialog
-    :title="'layout.header.lockScreen'"
     :model-value="show"
     :class="prefixCls"
-    @close="handleClosModal"
+    @close="handleClose"
   >
     <div :class="`${prefixCls}__entry`">
       <div :class="`${prefixCls}__header`">
@@ -20,13 +19,12 @@
         :ref="formRef"
       >
         <el-form-item
-          :label="'layout.header.lockScreenPassword'"
           prop="password"
           required
         >
           <el-input
             show-Password
-            v-model="data.password"
+            v-model="form.password"
           />
         </el-form-item>
       </el-form>
@@ -34,11 +32,9 @@
       <div :class="`${prefixCls}__footer`">
         <el-button
           type="primary"
-          block
           class="mt-2"
           @click="handleLock"
         >
-          {{'layout.header.lockScreenBtn' }}
         </el-button>
       </div>
     </div>
@@ -61,17 +57,16 @@ export default defineComponent({
   },
   emits: ['close'],
   setup(_, { emit }) {
-    const { t } = useI18n();
     const { prefixCls } = useDesign('header-lock-modal');
     const formRef = ref<typeof ElForm>();
-    const data = reactive<{ password?: string }>({});
+    const form = reactive<{ password?: string }>({});
     const getRealName = computed(() => {
       return userStore.getUserInfoState?.realName;
     });
 
     async function handleLock() {
       await unref(formRef)!.validate();
-      const values = dataRef;
+      const values = form;
       const password: string | undefined = values.password;
       lockStore.commitLockInfoState({
         isLock: true,
@@ -83,14 +78,13 @@ export default defineComponent({
       emit('close');
     }
     return {
-      t,
       prefixCls,
       getRealName,
       handleLock,
       handleClose,
       headerImg,
       formRef,
-      data,
+      form,
     };
   },
 });
