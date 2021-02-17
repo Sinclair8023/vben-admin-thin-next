@@ -1,8 +1,8 @@
 <template>
-  <Dropdown
+  <el-dropdown
     :dropMenuList="getDropMenuList"
     :trigger="getTrigger"
-    @menuEvent="handleMenuEvent"
+    @command="handleMenuEvent"
   >
     <div
       :class="`${prefixCls}__info`"
@@ -19,13 +19,21 @@
     >
       <RightOutlined />
     </span>
-  </Dropdown>
+    <template #dropdown>
+      <el-dropdown-menu>
+        <el-dropdown-item
+          v-for="item in getDropMenuList"
+          :key="item.command"
+          v-bind="item"
+        >{{item.text}}</el-dropdown-item>
+      </el-dropdown-menu>
+    </template>
+  </el-dropdown>
 </template>
 <script lang="ts">
 import type { PropType } from 'vue';
 
 import { defineComponent, computed } from 'vue';
-import { Dropdown } from '/@/components/Dropdown/index';
 
 import { TabContentProps, TabContentEnum } from '../types';
 
@@ -38,7 +46,7 @@ import { useI18n } from '/@/hooks/web/useI18n';
 import { RouteLocationNormalized } from 'vue-router';
 export default defineComponent({
   name: 'TabContent',
-  components: { Dropdown, RightOutlined },
+  components: { RightOutlined },
   props: {
     tabItem: {
       type: Object as PropType<RouteLocationNormalized>,

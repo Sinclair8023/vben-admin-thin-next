@@ -1,7 +1,5 @@
-import type { DropMenu } from '/@/components/Dropdown';
-
 // locale list
-export const localeList: DropMenu[] = [
+export const localeList = [
   {
     text: '简体中文',
     event: 'zh_CN',

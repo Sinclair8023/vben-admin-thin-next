@@ -1,26 +1,27 @@
 <template>
-  <Dropdown
-    :trigger="['click']"
-    :dropMenuList="localeList"
-    :selectedKeys="selectedKeys"
-    @menuEvent="handleMenuEvent"
-    :overlayClassName="`${prefixCls}-overlay`"
-  >
+  <el-dropdown @command="handleMenuEvent">
     <span :class="prefixCls">
       <Icon icon="cil:language" />
       <span
-        v-if="showText"
         :class="`${prefixCls}__text`"
+        v-if="showText"
       >{{ getLangText }}</span>
     </span>
-  </Dropdown>
+    <template #dropdown>
+      <el-dropdown-menu>
+        <el-dropdown-item
+          v-for="item in localeList"
+          :key="item.event"
+          :command="item.event"
+        >{{item.text}}</el-dropdown-item>
+      </el-dropdown-menu>
+    </template>
+  </el-dropdown>
 </template>
 <script lang="ts">
 import type { LocaleType } from '/@/locales/types';
-import type { DropMenu } from '/@/components/Dropdown';
 
 import { defineComponent, ref, watchEffect, unref, computed } from 'vue';
-import { Dropdown } from '/@/components/Dropdown';
 import Icon from '/@/components/Icon';
 
 import { useLocale } from '/@/locales/useLocale';
@@ -30,7 +31,7 @@ import { propTypes } from '/@/utils/propTypes';
 
 export default defineComponent({
   name: 'AppLocalPicker',
-  components: { Dropdown, Icon },
+  components: { Icon },
   props: {
     // Whether to display text
     showText: propTypes.bool.def(true),
@@ -56,14 +57,10 @@ export default defineComponent({
       selectedKeys.value = [unref(getLang)];
     });
 
-    function toggleLocale(lang: LocaleType | string) {
+    function handleMenuEvent(lang: LocaleType | string) {
       changeLocale(lang as LocaleType);
       selectedKeys.value = [lang as string];
-      props.reload && location.reload();
-    }
-
-    function handleMenuEvent(menu: DropMenu) {
-      toggleLocale(menu.event as string);
+      // props.reload && location.reload();
     }
 
     return { localeList, handleMenuEvent, selectedKeys, getLangText, prefixCls };

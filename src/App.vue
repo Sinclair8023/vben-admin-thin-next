@@ -18,7 +18,7 @@ export default defineComponent({
   components: { AppProvider },
   setup() {
     // support Multi-language
-    const { antConfigLocale, setLocale } = useLocale();
+    const { setLocale } = useLocale();
     setLocale();
 
     // Initialize vuex internal system configuration
@@ -27,7 +27,6 @@ export default defineComponent({
     const lockEvent = useLockPage();
 
     return {
-      antConfigLocale,
       lockEvent,
     };
   },

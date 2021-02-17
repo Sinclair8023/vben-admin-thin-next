@@ -4,14 +4,12 @@
 import type { LocaleType } from '/@/locales/types';
 import type { Ref } from 'vue';
 
-import { unref, ref } from 'vue';
+import { unref } from 'vue';
 import { useLocaleSetting } from '/@/hooks/setting/useLocaleSetting';
-
+import { locale } from 'element-plus'
 import { i18n } from './setupI18n';
 
 import 'moment/dist/locale/zh-cn';
-
-const antConfigLocaleRef = ref<any>(null);
 
 export function useLocale() {
   const { getLang, getLocale, setLocale: setLocalSetting } = useLocaleSetting();
@@ -19,6 +17,7 @@ export function useLocale() {
   // Switching the language will change the locale of useI18n
   // And submit to configuration modification
   function changeLocale(lang: LocaleType): void {
+    console.log(lang)
     if (i18n.mode === 'legacy') {
       i18n.global.locale = lang;
     } else {
@@ -30,15 +29,17 @@ export function useLocale() {
     switch (lang) {
       // Simplified Chinese
       case 'zh_CN':
-        import('ant-design-vue/es/locale/zh_CN').then((locale) => {
-          antConfigLocaleRef.value = locale.default;
+        import('dayjs/locale/zh-cn');
+        import('element-plus/lib/locale/lang/zh-cn').then((lang) => {
+          locale(lang.default)
         });
 
         break;
       // English
       case 'en':
-        import('ant-design-vue/es/locale/en_US').then((locale) => {
-          antConfigLocaleRef.value = locale.default;
+        import('dayjs/locale/en');
+        import('element-plus/lib/locale/lang/en').then((lang) => {
+          locale(lang.default)
         });
         break;
 
@@ -59,6 +60,5 @@ export function useLocale() {
     getLocale,
     getLang,
     changeLocale,
-    antConfigLocale: antConfigLocaleRef,
   };
 }
