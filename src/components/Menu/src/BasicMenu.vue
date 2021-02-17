@@ -25,7 +25,6 @@
 import type { MenuState } from './types';
 
 import { computed, defineComponent, unref, reactive, watch, toRefs, ref } from 'vue';
-import { Menu } from 'ant-design-vue';
 import BasicSubMenuItem from './components/BasicSubMenuItem.vue';
 
 import { MenuModeEnum, MenuTypeEnum } from '/@/enums/menuEnum';
@@ -49,7 +48,6 @@ import { getAllParentPath } from '/@/router/helper/menuHelper';
 export default defineComponent({
   name: 'BasicMenu',
   components: {
-    Menu,
     BasicSubMenuItem,
     // BasicSubMenuItem: createAsyncComponent(() => import('./components/BasicSubMenuItem.vue')),
   },

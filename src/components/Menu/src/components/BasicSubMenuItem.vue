@@ -32,7 +32,6 @@
 import type { Menu as MenuType } from '/@/router/types';
 
 import { defineComponent, computed, toRef } from 'vue';
-import { Menu } from 'ant-design-vue';
 import { useDesign } from '/@/hooks/web/useDesign';
 import { itemProps } from '../props';
 import BasicMenuItem from './BasicMenuItem.vue';
@@ -43,7 +42,6 @@ export default defineComponent({
   isSubMenu: true,
   components: {
     BasicMenuItem,
-    SubMenu: Menu.SubMenu,
     MenuItemContent,
   },
   props: itemProps,
