@@ -17,7 +17,6 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
-import { Tooltip, Badge } from 'ant-design-vue';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { BugOutlined } from '@ant-design/icons-vue';
 import { errorStore } from '/@/store/modules/error';
@@ -27,7 +26,7 @@ import { useDesign } from '/@/hooks/web/useDesign';
 
 export default defineComponent({
   name: 'ErrorAction',
-  components: { BugOutlined, Tooltip, Badge },
+  components: { BugOutlined },
 
   setup() {
     const { prefixCls } = useDesign('error-action');

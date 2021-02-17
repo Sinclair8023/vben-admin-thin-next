@@ -1,21 +1,8 @@
 import { h } from 'vue'
 import { ElMessageBox, ElMessage, ElNotification, ElLoading } from 'element-plus';
-import { ArgsProps, ConfigProps } from 'ant-design-vue/lib/notification';
 import { useI18n } from './useI18n';
 import MessageBox from 'element-plus/lib/el-message-box';
 import type { ElMessageBoxOptions } from 'element-plus/lib/el-message-box/src/message-box.type';
-
-export interface NotifyApi {
-  info(config: ArgsProps): void;
-  success(config: ArgsProps): void;
-  error(config: ArgsProps): void;
-  warn(config: ArgsProps): void;
-  warning(config: ArgsProps): void;
-  open(args: ArgsProps): void;
-  close(key: String): void;
-  config(options: ConfigProps): void;
-  destroy(): void;
-}
 
 export declare type NotificationPlacement = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 export declare type IconType = 'success' | 'info' | 'error' | 'warning';

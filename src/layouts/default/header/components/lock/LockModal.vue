@@ -49,7 +49,6 @@
 import { defineComponent, computed } from 'vue';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { useDesign } from '/@/hooks/web/useDesign';
-import { BasicModal, useModalInner } from '/@/components/Modal/index';
 
 import { userStore } from '/@/store/modules/user';
 import { lockStore } from '/@/store/modules/lock';
@@ -57,7 +56,6 @@ import headerImg from '/@/assets/images/header.jpg';
 import { propTypes } from '/@/utils/propTypes';
 export default defineComponent({
   name: 'LockModal',
-  components: { BasicModal },
   props: {
     show: propTypes.bool,
   },
@@ -75,8 +73,6 @@ export default defineComponent({
       await unref(formRef)!.validate();
       const values = dataRef;
       const password: string | undefined = values.password;
-      closeModal();
-
       lockStore.commitLockInfoState({
         isLock: true,
         pwd: password,
