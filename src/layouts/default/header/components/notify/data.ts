@@ -3,12 +3,12 @@ export interface ListItem {
   avatar: string;
   title: string;
   datetime: string;
-  type: string;
+  type: 'success' | 'info' | 'warning' | 'danger';
   read?: boolean;
   description: string;
   clickClose?: boolean;
   extra?: string;
-  color?: string;
+  // color?: string;
 }
 
 export interface TabItem {
@@ -29,7 +29,7 @@ export const tabListData: TabItem[] = [
         title: '你收到了 14 份新周报',
         description: '',
         datetime: '2017-08-09',
-        type: '1',
+        type: 'info',
       },
       {
         id: '000000002',
@@ -37,7 +37,7 @@ export const tabListData: TabItem[] = [
         title: '你推荐的 曲妮妮 已通过第三轮面试',
         description: '',
         datetime: '2017-08-08',
-        type: '1',
+        type: 'info',
       },
       {
         id: '000000003',
@@ -46,7 +46,7 @@ export const tabListData: TabItem[] = [
         description: '',
         datetime: '2017-08-07',
         // read: true,
-        type: '1',
+        type: 'info',
       },
       {
         id: '000000004',
@@ -54,7 +54,7 @@ export const tabListData: TabItem[] = [
         title: '左侧图标用于区分不同的类型',
         description: '',
         datetime: '2017-08-07',
-        type: '1',
+        type: 'info',
       },
     ],
   },
@@ -68,7 +68,7 @@ export const tabListData: TabItem[] = [
         title: '曲丽丽 评论了你',
         description: '描述信息描述信息描述信息',
         datetime: '2017-08-07',
-        type: '2',
+        type: 'info',
         clickClose: true,
       },
       {
@@ -77,7 +77,7 @@ export const tabListData: TabItem[] = [
         title: '朱偏右 回复了你',
         description: '这种模板用于提醒谁与你发生了互动',
         datetime: '2017-08-07',
-        type: '2',
+        type: 'info',
         clickClose: true,
       },
       {
@@ -86,7 +86,7 @@ export const tabListData: TabItem[] = [
         title: '标题',
         description: '这种模板用于提醒谁与你发生了互动',
         datetime: '2017-08-07',
-        type: '2',
+        type: 'info',
         clickClose: true,
       },
     ],
@@ -102,8 +102,7 @@ export const tabListData: TabItem[] = [
         description: '任务需要在 2017-01-12 20:00 前启动',
         datetime: '',
         extra: '未开始',
-        color: '',
-        type: '3',
+        type: 'warning',
       },
       {
         id: '000000010',
@@ -112,8 +111,7 @@ export const tabListData: TabItem[] = [
         description: '冠霖 需在 2017-01-07 前完成代码变更任务',
         datetime: '',
         extra: '马上到期',
-        color: 'red',
-        type: '3',
+        type: 'danger',
       },
       {
         id: '000000011',
@@ -122,8 +120,7 @@ export const tabListData: TabItem[] = [
         description: '指派竹尔于 2017-01-09 前完成更新并发布',
         datetime: '',
         extra: '已耗时 8 天',
-        color: 'gold',
-        type: '3',
+        type: 'warning',
       },
       {
         id: '000000012',
@@ -132,8 +129,7 @@ export const tabListData: TabItem[] = [
         description: '指派竹尔于 2017-01-09 前完成更新并发布',
         datetime: '',
         extra: '进行中',
-        color: 'blue',
-        type: '3',
+        type: 'info',
       },
     ],
   },

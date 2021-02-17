@@ -34,8 +34,6 @@
 </template>
 <script lang="ts">
 // components
-import { Menu } from 'ant-design-vue';
-
 import { defineComponent, computed } from 'vue';
 import { Icon } from '/@/components/Icon';
 // res
@@ -59,9 +57,6 @@ type MenuEvent = 'loginOut' | 'doc';
 export default defineComponent({
   name: 'UserDropdown',
   components: {
-    Menu,
-    MenuItem: createAsyncComponent(() => import('./DropMenuItem.vue')),
-    MenuDivider: Menu.Divider,
     Icon,
   },
   props: {

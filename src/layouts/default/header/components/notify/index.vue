@@ -34,14 +34,13 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { Badge } from 'ant-design-vue';
 import { BellOutlined } from '@ant-design/icons-vue';
 import { tabListData } from './data';
 import NoticeList from './NoticeList.vue';
 import { useDesign } from '/@/hooks/web/useDesign';
 
 export default defineComponent({
-  components: { BellOutlined, Badge, NoticeList },
+  components: { BellOutlined, NoticeList },
   setup() {
     const { prefixCls } = useDesign('header-notify');
 

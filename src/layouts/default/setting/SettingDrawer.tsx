@@ -1,6 +1,5 @@
 import { defineComponent, computed, unref, toRefs } from 'vue';
-import { ElDrawer } from 'element-plus'
-import { Divider } from 'ant-design-vue';
+import { ElDrawer, ElDivider } from 'element-plus'
 import {
   TypePicker,
   ThemePicker,
@@ -420,21 +419,21 @@ export default defineComponent({
         customClass={prefixCls}
         appendToBody
       >
-        <Divider>{() => t('layout.setting.navMode')}</Divider>
+        <ElDivider>{() => t('layout.setting.navMode')}</ElDivider>
         {renderSidebar()}
-        <Divider>{() => t('layout.setting.sysTheme')}</Divider>
+        <ElDivider>{() => t('layout.setting.sysTheme')}</ElDivider>
         {renderMainTheme()}
-        <Divider>{() => t('layout.setting.headerTheme')}</Divider>
+        <ElDivider>{() => t('layout.setting.headerTheme')}</ElDivider>
         {renderHeaderTheme()}
-        <Divider>{() => t('layout.setting.sidebarTheme')}</Divider>
+        <ElDivider>{() => t('layout.setting.sidebarTheme')}</ElDivider>
         {renderSiderTheme()}
-        <Divider>{() => t('layout.setting.interfaceFunction')}</Divider>
+        <ElDivider>{() => t('layout.setting.interfaceFunction')}</ElDivider>
         {renderFeatures()}
-        <Divider>{() => t('layout.setting.interfaceDisplay')}</Divider>
+        <ElDivider>{() => t('layout.setting.interfaceDisplay')}</ElDivider>
         {renderContent()}
-        <Divider>{() => t('layout.setting.animation')}</Divider>
+        <ElDivider>{() => t('layout.setting.animation')}</ElDivider>
         {renderTransition()}
-        <Divider />
+        <ElDivider />
         <SettingFooter />
       </ElDrawer>
     );

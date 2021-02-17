@@ -71,6 +71,7 @@ export default defineComponent({
       font-size: 16px;
       line-height: 22px;
       border-bottom: 1px solid #f0f0f0;
+      margin-bottom: 0;
     }
     .el-drawer__body {
       padding: 16px;
