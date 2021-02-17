@@ -1,38 +1,48 @@
 <template>
   <span @click="handleLock">
-    <Tooltip :title="t('layout.header.tooltipLock')" placement="bottom" :mouseEnterDelay="0.5">
+    <el-tooltip
+      :content="t('layout.header.tooltipLock')"
+      placement="bottom"
+      show-after="0.5"
+    >
       <LockOutlined />
-    </Tooltip>
-    <LockAction @register="register" />
+    </el-tooltip>
+    <LockAction
+      :show="showModalRef"
+      @close="handleClosModal"
+    />
   </span>
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue';
-  import { Tooltip } from 'ant-design-vue';
-  import { useI18n } from '/@/hooks/web/useI18n';
-  import { LockOutlined } from '@ant-design/icons-vue';
-  import { useModal } from '/@/components/Modal';
-  import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent';
-  export default defineComponent({
-    name: 'FullScreen',
-    components: {
-      LockOutlined,
-      Tooltip,
-      LockAction: createAsyncComponent(() => import('./LockModal.vue')),
-    },
+import { defineComponent } from 'vue';
+import { useI18n } from '/@/hooks/web/useI18n';
+import { LockOutlined } from '@ant-design/icons-vue';
+import { useModal } from '/@/components/Modal';
+import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent';
+export default defineComponent({
+  name: 'Lock',
+  components: {
+    LockOutlined,
+    LockAction: createAsyncComponent(() => import('./LockModal.vue')),
+  },
 
-    setup() {
-      const { t } = useI18n();
-      const [register, { openModal }] = useModal();
+  setup() {
+    const { t } = useI18n();
+    const showModalRef = ref(boolean)(false);
 
-      function handleLock() {
-        openModal(true);
-      }
-      return {
-        t,
-        register,
-        handleLock,
-      };
-    },
-  });
+    function handleLock() {
+      showModalRef.value = true;
+    }
+    function handleClosModal() {
+      showModalRef.value = false;
+    }
+    return {
+      t,
+      register,
+      handleLock,
+      showModalRef,
+      handleClosModal,
+    };
+  },
+});
 </script>

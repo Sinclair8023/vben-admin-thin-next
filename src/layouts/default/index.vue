@@ -5,7 +5,7 @@
       fixed
       v-if="getShowFullHeaderRef"
     />
-    <div
+    <el-container
       :class="{
         'ant-layout-has-sider': getIsMixSidebar,
         'layout': true,
@@ -18,7 +18,7 @@
         <LayoutContent />
         <LayoutFooter />
       </div>
-    </div>
+    </el-container>
   </div>
 </template>
 

@@ -46,10 +46,10 @@
         :class="`${prefixCls}-action__item error-action`"
       />
 
-      <LockItem
+      <!-- <LockItem
         v-if="getUseLockPage"
         :class="`${prefixCls}-action__item lock-item`"
-      />
+      /> -->
 
       <Notify
         v-if="getShowNotice"

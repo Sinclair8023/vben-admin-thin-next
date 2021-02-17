@@ -31,7 +31,7 @@
       .el-tabs__item {
         height: calc(@multiple-height - 2px);
         padding-left: 26px;
-        padding-right: 12px;
+        padding-right: 26px;
         line-height: calc(@multiple-height - 2px);
         color: @text-color-call-out;
         background: @white;
@@ -86,8 +86,9 @@
         }
 
         .el-icon-close {
-          margin-right: -5px;
-          margin-left: 3px;
+          position: absolute;
+          top: 7px;
+          right: 4px;
           &:hover {
             opacity: 1;
           }
@@ -133,8 +134,9 @@
     line-height: @multiple-height !important;
   }
 
-  .ant-dropdown-trigger {
+  .el-dropdown {
     display: inline-flex;
+    color: inherit;
   }
 
   &--hide-close {
@@ -172,7 +174,8 @@
     }
 
     &__info {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
       width: 100%;
       height: @multiple-height - 2;
       padding-left: 0;
@@ -180,6 +183,12 @@
       font-size: 12px;
       cursor: pointer;
       user-select: none;
+    }
+    &__tools-item {
+      padding: 0 10px;
+      .app-iconify {
+        margin-right: 10px;
+      }
     }
   }
 }

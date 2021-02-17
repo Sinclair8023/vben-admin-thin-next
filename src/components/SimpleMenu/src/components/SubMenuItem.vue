@@ -86,7 +86,6 @@ import { useMenuItem } from './useMenu';
 import { useSimpleRootMenuContext } from './useSimpleMenuContext';
 import MenuCollapseTransition from './MenuCollapseTransition.vue';
 import Icon from '/@/components/Icon';
-import { Popover } from 'ant-design-vue';
 import { isBoolean, isObject } from '/@/utils/is';
 import Mitt from '/@/utils/mitt';
 
@@ -96,7 +95,6 @@ export default defineComponent({
   components: {
     Icon,
     MenuCollapseTransition,
-    Popover,
   },
   props: {
     name: {

@@ -1,36 +1,48 @@
 <template>
-  <div @click="openDrawer" :class="prefixCls">
+  <div
+    @click="openDrawer"
+    :class="prefixCls"
+  >
     <SettingOutlined />
-    <SettingDrawer @register="register" />
+    <SettingDrawer
+      :show="show"
+      @close="closeDrawer"
+    />
   </div>
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue';
-  import { SettingOutlined } from '@ant-design/icons-vue';
-  import SettingDrawer from './SettingDrawer';
+import { defineComponent, ref, unref } from 'vue';
+import { SettingOutlined } from '@ant-design/icons-vue';
+import SettingDrawer from './SettingDrawer';
 
-  import { useDrawer } from '/@/components/Drawer';
-  import { useDesign } from '/@/hooks/web/useDesign';
+import { useDesign } from '/@/hooks/web/useDesign';
 
-  export default defineComponent({
-    name: 'SettingButton',
-    components: { SettingOutlined, SettingDrawer },
-    setup() {
-      const [register, { openDrawer }] = useDrawer();
-
-      const { prefixCls } = useDesign('setting-button');
-      return {
-        prefixCls,
-        register,
-        openDrawer,
-      };
-    },
-  });
+export default defineComponent({
+  name: 'SettingButton',
+  components: { SettingOutlined, SettingDrawer },
+  setup() {
+    const openDrawerRef = ref<boolean>(false);
+    const { prefixCls } = useDesign('setting-button');
+    const openDrawer = () => {
+      openDrawerRef.value = true;
+    };
+    const closeDrawer = () => {
+      openDrawerRef.value = false;
+    };
+    return {
+      prefixCls,
+      openDrawer,
+      closeDrawer,
+      show: openDrawerRef,
+    };
+  },
+});
 </script>
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-setting-button';
+@prefix-cls: ~'@{namespace}-setting';
 
-  .@{prefix-cls} {
+.@{prefix-cls} {
+  &-button {
     position: absolute;
     top: 45%;
     right: 0;
@@ -49,4 +61,21 @@
       height: 1em;
     }
   }
+  &-drawer {
+    .el-drawer__header {
+      padding: 16px 24px;
+      color: rgba(0, 0, 0, 0.85);
+      background: #fff;
+      border-radius: 2px 2px 0 0;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 22px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .el-drawer__body {
+      padding: 16px;
+      overflow-y: auto;
+    }
+  }
+}
 </style>

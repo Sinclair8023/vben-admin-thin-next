@@ -11,6 +11,7 @@ const dashboard: AppRouteModule = {
   meta: {
     icon: 'bx:bx-home',
     title: t('routes.dashboard.welcome'),
+    affix: true,
   },
   children: [
     {
@@ -29,7 +30,7 @@ const dashboard: AppRouteModule = {
       component: () => import('/@/views/dashboard/house/index.vue'),
       meta: {
         title: 'house',
-        affix: true,
+        affix: false,
         icon: 'bx:bx-home',
       },
     },

@@ -3,6 +3,7 @@
     :dropMenuList="getDropMenuList"
     :trigger="getTrigger"
     @command="handleMenuEvent"
+    :class="`${prefixCls}__tools`"
   >
     <div
       :class="`${prefixCls}__info`"
@@ -23,9 +24,15 @@
       <el-dropdown-menu>
         <el-dropdown-item
           v-for="item in getDropMenuList"
+          :class="`${prefixCls}__tools-item`"
           :key="item.command"
-          v-bind="item"
-        >{{item.text}}</el-dropdown-item>
+          :command="item.command"
+          :disabled="item.disabled"
+          :divided="item.divided"
+        >
+          <Icon :icon="item.icon" />
+          {{item.text}}
+        </el-dropdown-item>
       </el-dropdown-menu>
     </template>
   </el-dropdown>
@@ -36,7 +43,7 @@ import type { PropType } from 'vue';
 import { defineComponent, computed } from 'vue';
 
 import { TabContentProps, TabContentEnum } from '../types';
-
+import Icon from '/@/components/Icon';
 import { RightOutlined } from '@ant-design/icons-vue';
 
 import { useDesign } from '/@/hooks/web/useDesign';
@@ -46,7 +53,7 @@ import { useI18n } from '/@/hooks/web/useI18n';
 import { RouteLocationNormalized } from 'vue-router';
 export default defineComponent({
   name: 'TabContent',
-  components: { RightOutlined },
+  components: { RightOutlined, Icon },
   props: {
     tabItem: {
       type: Object as PropType<RouteLocationNormalized>,

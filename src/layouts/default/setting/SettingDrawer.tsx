@@ -1,5 +1,5 @@
-import { defineComponent, computed, unref } from 'vue';
-import { BasicDrawer } from '/@/components/Drawer/index';
+import { defineComponent, computed, unref, toRefs } from 'vue';
+import { ElDrawer } from 'element-plus'
 import { Divider } from 'ant-design-vue';
 import {
   TypePicker,
@@ -36,12 +36,18 @@ import {
   SIDE_BAR_BG_COLOR_LIST,
   APP_PRESET_COLOR_LIST,
 } from '/@/settings/designSetting';
+import { propTypes } from '/@/utils/propTypes';
+import { useDesign } from '/@/hooks/web/useDesign';
 
 const { t } = useI18n();
 
 export default defineComponent({
   name: 'SettingDrawer',
-  setup(_, { attrs }) {
+  emits: ['close'],
+  props: {
+    show: propTypes.bool,
+  },
+  setup(props, { attrs, emit }) {
     const {
       getContentMode,
       getShowFooter,
@@ -95,6 +101,11 @@ export default defineComponent({
     const getShowMenuRef = computed(() => {
       return unref(getShowMenu) && !unref(getIsHorizontal);
     });
+    const { prefixCls } = useDesign('setting-drawer');
+    const handleDrawerClose = (done) => {
+      done()
+      emit('close', false)
+    }
 
     function renderSidebar() {
       return (
@@ -396,13 +407,18 @@ export default defineComponent({
         </>
       );
     }
-
+    const isShow = computed(() => {
+      const { show } = toRefs(props)
+      return unref(show)
+    })
     return () => (
-      <BasicDrawer
-        {...attrs}
+      <ElDrawer
         title={t('layout.setting.drawerTitle')}
         width={330}
-        wrapClassName="setting-drawer"
+        modelValue={isShow.value}
+        beforeClose={handleDrawerClose}
+        customClass={prefixCls}
+        appendToBody
       >
         <Divider>{() => t('layout.setting.navMode')}</Divider>
         {renderSidebar()}
@@ -420,7 +436,7 @@ export default defineComponent({
         {renderTransition()}
         <Divider />
         <SettingFooter />
-      </BasicDrawer>
+      </ElDrawer>
     );
   },
 });

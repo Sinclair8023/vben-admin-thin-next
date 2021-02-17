@@ -19,7 +19,6 @@ export default defineComponent({
   },
   setup() {
     const { getUseOpenBackTop, getShowSettingButton } = useRootSetting();
-
     return {
       getUseOpenBackTop,
       getShowSettingButton,

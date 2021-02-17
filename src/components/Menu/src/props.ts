@@ -42,6 +42,7 @@ export const itemProps = {
   theme: propTypes.oneOf(['dark', 'light']),
   showTitle: propTypes.bool,
   isHorizontal: propTypes.bool,
+  index: propTypes.string,
 };
 
 export const contentProps = {

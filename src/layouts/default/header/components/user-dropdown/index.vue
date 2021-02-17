@@ -117,7 +117,7 @@ export default defineComponent({
   font-size: 12px;
   cursor: pointer;
   align-items: center;
-
+  outline: none;
   &:hover {
     background: @header-light-bg-hover-color;
   }

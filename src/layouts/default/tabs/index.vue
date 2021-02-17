@@ -5,7 +5,6 @@
       v-model="activeKeyRef"
       @tab-click="handleChange"
       @edit="handleEdit"
-      closable
     >
       <el-tab-pane
         v-for="item in getTabsState"
