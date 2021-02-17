@@ -54,12 +54,12 @@
               <el-col :span="12">
                 <el-form-item :style="{ 'text-align': 'right' }">
                   <!-- No logic, you need to deal with it yourself -->
-                  <a-button
+                  <el-button
                     type="link"
                     size="small"
                   >
                     {{ t('sys.login.forgetPassword') }}
-                  </a-button>
+                  </el-button>
                 </el-form-item>
               </el-col>
             </el-row>

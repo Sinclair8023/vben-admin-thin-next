@@ -21,7 +21,6 @@
 <script lang="ts">
 import { computed, defineComponent, ref, unref, CSSProperties } from 'vue';
 
-import { Layout } from 'ant-design-vue';
 import LayoutMenu from '../menu';
 import LayoutTrigger from '/@/layouts/default/trigger/index.vue';
 
@@ -35,7 +34,7 @@ import { useDesign } from '/@/hooks/web/useDesign';
 import DragBar from './DragBar.vue';
 export default defineComponent({
   name: 'LayoutSideBar',
-  components: { Sider: Layout.Sider, LayoutMenu, DragBar, LayoutTrigger },
+  components: { LayoutMenu, DragBar, LayoutTrigger },
   setup() {
     const dragBarRef = ref<ElRef>(null);
     const sideRef = ref<ElRef>(null);
