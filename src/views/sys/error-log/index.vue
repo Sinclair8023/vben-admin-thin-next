@@ -14,28 +14,33 @@
       class="error-handle-table"
     >
       <template #toolbar>
-        <a-button
+        <el-button
           @click="fireVueError"
           type="primary"
         >
           {{ t('sys.errorLog.fireVueError') }}
-        </a-button>
-        <a-button
+        </el-button>
+        <el-button
           @click="fireResourceError"
           type="primary"
         >
           {{ t('sys.errorLog.fireResourceError') }}
-        </a-button>
-        <a-button
+        </el-button>
+        <el-button
           @click="fireAjaxError"
           type="primary"
         >
           {{ t('sys.errorLog.fireAjaxError') }}
-        </a-button>
+        </el-button>
       </template>
       <template #action="{ record }">
         <TableAction :actions="[
-            { label: t('sys.errorLog.tableActionDesc'), onClick: handleDetail.bind(null, record) },
+            {
+              label: t('sys.errorLog.tableActionDesc'),
+              popConfirm: {
+                confirm: handleDetail.bind(null, record)
+              }
+            }
           ]" />
       </template>
     </BasicTable>
@@ -96,7 +101,7 @@ export default defineComponent({
     // 查看详情
     function handleDetail(row: ErrorInfo) {
       rowInfo.value = row;
-      openModal(true);
+      // openModal(true);
     }
 
     function fireVueError() {

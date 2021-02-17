@@ -41,7 +41,8 @@
     "vue-router": "^4.0.3",
     "vue-types": "^3.0.2",
     "vuex": "^4.0.0",
-    "vuex-module-decorators": "^1.0.1"
+    "vuex-module-decorators": "^1.0.1",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",

@@ -77,6 +77,8 @@ export interface Menu {
   tag?: MenuTag;
 
   hideMenu?: boolean;
+
+  components?: Component;
 }
 
 export interface MenuModule {

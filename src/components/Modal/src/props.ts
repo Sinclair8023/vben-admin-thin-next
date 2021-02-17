@@ -1,6 +1,6 @@
 import type { PropType, CSSProperties } from 'vue';
 import { ButtonProps } from 'ant-design-vue/es/button/buttonTypes';
-
+import type _Dialog from 'element-plus/lib/el-dialog'
 import { useI18n } from '/@/hooks/web/useI18n';
 import { propTypes, VueNode } from '/@/utils/propTypes';
 import type { ModalWrapperProps } from './types';

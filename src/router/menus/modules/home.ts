@@ -16,25 +16,5 @@ const menu: MenuModule[] = [
       name: 'house123',
     },
   },
-  {
-    orderNo: 19,
-    menu: {
-      name: t('routes.demo.feat.feat'),
-      path: '/feat',
-      tag: {
-        dot: true,
-      },
-      children: [
-        {
-          path: 'context-menu',
-          name: t('routes.demo.feat.contextMenu'),
-        },
-        {
-          path: 'context-menu',
-          name: t('routes.demo.feat.contextMenu'),
-        },
-      ],
-    },
-  }
 ];
 export default menu;

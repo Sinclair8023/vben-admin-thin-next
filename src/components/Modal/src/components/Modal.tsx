@@ -1,4 +1,4 @@
-import { Modal } from 'ant-design-vue';
+import { ElDialog } from 'element-plus'
 import { defineComponent, toRefs, unref } from 'vue';
 import { basicProps } from '../props';
 import { useModalDragMove } from '../hooks/useModalDrag';
@@ -21,7 +21,7 @@ export default defineComponent({
     return () => {
       const propsData = { ...unref(attrs), ...props } as Recordable;
 
-      return <Modal {...propsData}>{extendSlots(slots)}</Modal>;
+      return <ElDialog {...propsData}>{extendSlots(slots)}</ElDialog>;
     };
   },
 });

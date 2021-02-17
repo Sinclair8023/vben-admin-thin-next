@@ -1,19 +1,17 @@
-import type { BasicColumn, ActionItem } from '/@/components/Table';
-
+import { ElButton } from 'element-plus';
+import { Fragment } from 'vue'
 import { FileItem, PreviewFileItem, UploadResultStatus } from './types';
 import {
   // checkImgType,
   isImgTypeByName,
 } from './helper';
 import { Progress, Tag } from 'ant-design-vue';
-
-import TableAction from '/@/components/Table/src/components/TableAction.vue';
 import ThumbUrl from './ThumbUrl.vue';
 import { useI18n } from '/@/hooks/web/useI18n';
 const { t } = useI18n();
 
 // 文件上传列表
-export function createTableColumns(): BasicColumn[] {
+export function createTableColumns() {
   return [
     {
       dataIndex: 'thumbUrl',
@@ -79,32 +77,19 @@ export function createTableColumns(): BasicColumn[] {
     },
   ];
 }
-export function createActionColumn(handleRemove: Function): BasicColumn {
+export function createActionColumn(handleRemove: Function){
   return {
     width: 120,
     title: t('component.upload.operating'),
     dataIndex: 'action',
     fixed: false,
     customRender: ({ record }) => {
-      const actions: ActionItem[] = [
-        {
-          label: t('component.upload.del'),
-          color: 'error',
-          onClick: handleRemove.bind(null, record),
-        },
-      ];
-      // if (checkImgType(record)) {
-      //   actions.unshift({
-      //     label: t('component.upload.preview'),
-      //     onClick: handlePreview.bind(null, record),
-      //   });
-      // }
-      return <TableAction actions={actions} outside={true} />;
+      return <ElButton type="warning" onClick={handleRemove.bind(null, record)}>{t('component.upload.del')}</ElButton>
     },
   };
 }
 // 文件预览列表
-export function createPreviewColumns(): BasicColumn[] {
+export function createPreviewColumns() {
   return [
     {
       dataIndex: 'url',
@@ -130,33 +115,18 @@ export function createPreviewActionColumn({
   handleRemove: Fn;
   handlePreview: Fn;
   handleDownload: Fn;
-}): BasicColumn {
+}){
   return {
     width: 160,
     title: t('component.upload.operating'),
     dataIndex: 'action',
     fixed: false,
     customRender: ({ record }) => {
-      // const { url } = (record || {}) as PreviewFileItem;
-
-      const actions: ActionItem[] = [
-        {
-          label: t('component.upload.del'),
-          color: 'error',
-          onClick: handleRemove.bind(null, record),
-        },
-        {
-          label: t('component.upload.download'),
-          onClick: handleDownload.bind(null, record),
-        },
-      ];
-      // if (isImgTypeByName(url)) {
-      //   actions.unshift({
-      //     label: t('component.upload.preview'),
-      //     onClick: handlePreview.bind(null, record),
-      //   });
-      // }
-      return <TableAction actions={actions} outside={true} />;
+      return <Fragment>
+        <ElButton type="warning" onClick={handleRemove.bind(null, record)}>{t('component.upload.del')}</ElButton>
+        <ElButton onClick={handleDownload.bind(null, record)}>{t('component.upload.download')}</ElButton>
+      </Fragment>
+      return
     },
   };
 }

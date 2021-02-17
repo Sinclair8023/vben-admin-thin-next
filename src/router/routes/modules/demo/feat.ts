@@ -21,6 +21,22 @@ const feat: AppRouteModule = {
         title: t('routes.demo.feat.contextMenu'),
       },
     },
+    {
+      path: 'error-log',
+      name: 'ErrorLog',
+      component: () => import('/@/views/sys/error-log/index.vue'),
+      meta: {
+        title: t('routes.demo.feat.errorLog'),
+      },
+    },
+    {
+      path: 'image',
+      name: 'image',
+      component: () => import('/@/views/demo/feat/image.vue'),
+      meta: {
+        title: 'image',
+      },
+    },
   ]
 };
 

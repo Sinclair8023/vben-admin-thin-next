@@ -1,43 +1,4 @@
 import Icon from './Icon/index';
-import {
-  // Need
-  // Optional
-  // Select,
-  // Alert,
-  // Checkbox,
-  // DatePicker,
-  // Radio,
-  // Switch,
-  // Card,
-  // List,
-  // Tabs,
-  // Descriptions,
-  // Tree,
-  // Table,
-  // Divider,
-  // Modal,
-  // Drawer,
-  // Dropdown,
-  // Tag,
-  // Tooltip,
-  // Badge,
-  // Popover,
-  // Upload,
-  // Transfer,
-  // Steps,
-  // PageHeader,
-  // Result,
-  // Empty,
-  // Avatar,
-  // Menu,
-  // Breadcrumb,
-  // Form,
-  // Input,
-  // Row,
-  // Col,
-  // Spin,
-} from 'ant-design-vue';
-
 import { App } from 'vue';
 
 const compList = [Icon];
