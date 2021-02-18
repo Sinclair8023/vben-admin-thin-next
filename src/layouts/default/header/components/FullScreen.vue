@@ -5,17 +5,26 @@
     :show-after="500"
   >
     <span @click="toggleFullscreen">
-      <FullscreenOutlined v-if="!isFullscreen" />
-      <FullscreenExitOutlined v-else />
+      <g-icon
+        prefix="ant-design"
+        icon="fullscreen-outlined"
+        v-if="!isFullscreen"
+      />
+      <g-icon
+        prefix="ant-design"
+        icon="fullscreen-exit-outlined"
+        v-else
+      />
     </span>
   </el-tooltip>
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, computed, unref } from 'vue';
+import { useI18n } from '/@/hooks/web/useI18n';
+import { useFullscreen } from '/@/hooks/web/useFullScreen';
+
 export default defineComponent({
   name: 'FullScreen',
-  components: { FullscreenExitOutlined, FullscreenOutlined },
-
   setup() {
     const { t } = useI18n();
     const { toggleFullscreen, isFullscreenRef } = useFullscreen();

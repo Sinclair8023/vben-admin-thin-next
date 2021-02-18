@@ -5,11 +5,11 @@
     placement="bottom"
   >
     <el-badge
-      :value="getCount"
       is-dot
       type="danger"
       :class="prefixCls"
       :max="99"
+      :hidden="getCount === 0"
     >
       <g-icon
         prefix="ion"
