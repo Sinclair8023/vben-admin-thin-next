@@ -47,7 +47,6 @@ export default defineComponent({
   flex: 1 1 auto;
   min-height: 0;
   padding: 8px;
-  background: #f0f2f5;
   &.fixed {
     width: 1200px;
     margin: 0 auto;

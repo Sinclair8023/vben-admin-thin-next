@@ -10,7 +10,7 @@ const feat: AppRouteModule = {
   redirect: '/feat/icon',
   meta: {
     icon: 'ic:outline-featured-play-list',
-    title: t('routes.demo.feat.feat'),
+    title: t('routes.feat.feat'),
   },
   children: [
     {
@@ -18,7 +18,7 @@ const feat: AppRouteModule = {
       name: 'ContextMenuDemo',
       component: () => import('/@/views/demo/feat/context-menu.vue'),
       meta: {
-        title: t('routes.demo.feat.contextMenu'),
+        title: t('routes.feat.contextMenu'),
       },
     },
     {
@@ -26,7 +26,7 @@ const feat: AppRouteModule = {
       name: 'ErrorLog',
       component: () => import('/@/views/sys/error-log/index.vue'),
       meta: {
-        title: t('routes.demo.feat.errorLog'),
+        title: t('routes.feat.errorLog'),
       },
     },
     {

@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4">
+  <div>
     <template
       v-for="src in imgList"
       :key="src"
