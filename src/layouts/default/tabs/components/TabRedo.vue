@@ -8,21 +8,22 @@
       :class="`${prefixCls}__extra-redo`"
       @click="handleRedo"
     >
-      <RedoOutlined :spin="loading" />
+      <g-icon
+        prefix="ant-design"
+        icon="redo-outlined"
+        :loading="loading"
+      />
     </span>
   </el-tooltip>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import { RedoOutlined } from '@ant-design/icons-vue';
 import { useDesign } from '/@/hooks/web/useDesign';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { useTabs } from '/@/hooks/web/useTabs';
 
 export default defineComponent({
   name: 'TabContent',
-  components: { RedoOutlined },
-
   setup() {
     const loading = ref(false);
     const { prefixCls } = useDesign('multiple-tabs-content');

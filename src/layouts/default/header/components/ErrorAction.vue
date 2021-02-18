@@ -11,15 +11,17 @@
       :class="prefixCls"
       :max="99"
     >
-      <BugOutlined @click="handleToErrorList" />
+      <g-icon
+        prefix="ion"
+        icon="bug-outline"
+        @click="handleToErrorList"
+      />
     </el-badge>
   </el-tooltip>
 </template>
 <script lang="ts">
 import { defineComponent, computed } from 'vue';
 import { useI18n } from '/@/hooks/web/useI18n';
-import { Icon } from '/@/components/Icon';
-import { BugOutlined } from '@ant-design/icons-vue';
 import { errorStore } from '/@/store/modules/error';
 import { PageEnum } from '/@/enums/pageEnum';
 import { useRouter } from 'vue-router';
@@ -27,7 +29,6 @@ import { useDesign } from '/@/hooks/web/useDesign';
 
 export default defineComponent({
   name: 'ErrorAction',
-  components: { BugOutlined },
 
   setup() {
     const { prefixCls } = useDesign('error-action');

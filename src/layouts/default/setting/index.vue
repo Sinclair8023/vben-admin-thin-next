@@ -3,7 +3,7 @@
     @click="openDrawer"
     :class="prefixCls"
   >
-    <SettingOutlined />
+    <g-icon icon="ant-design:setting-outlined" />
     <SettingDrawer
       :show="show"
       @close="closeDrawer"
@@ -12,14 +12,13 @@
 </template>
 <script lang="ts">
 import { defineComponent, ref, unref } from 'vue';
-import { SettingOutlined } from '@ant-design/icons-vue';
 import SettingDrawer from './SettingDrawer';
 
 import { useDesign } from '/@/hooks/web/useDesign';
 
 export default defineComponent({
   name: 'SettingButton',
-  components: { SettingOutlined, SettingDrawer },
+  components: { SettingDrawer },
   setup() {
     const openDrawerRef = ref<boolean>(false);
     const { prefixCls } = useDesign('setting-button');

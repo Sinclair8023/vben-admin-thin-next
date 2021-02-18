@@ -2,8 +2,6 @@
 import type { CSSProperties, PropType } from 'vue';
 import { defineComponent, computed, unref } from 'vue';
 
-import { InfoCircleOutlined } from '@ant-design/icons-vue';
-
 import { isString, isArray } from '/@/utils/is';
 import { getSlot } from '/@/utils/helper/tsxHelper';
 import { propTypes } from '/@/utils/propTypes';
@@ -93,7 +91,7 @@ export default defineComponent({
           placement={props.placement as 'left'}
         >
           <span class={prefixCls} style={unref(getMainStyleRef)}>
-            {getSlot(slots) || <InfoCircleOutlined />}
+            {getSlot(slots) || <g-icon icon="ant-design:info-circle-outlined " />}
           </span>
         </el-tooltip>
       );

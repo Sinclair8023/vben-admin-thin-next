@@ -18,7 +18,7 @@
       v-else
       @click="handleContext"
     >
-      <RightOutlined />
+      <g-icon icon="ant-design:right-outlined" />
     </span>
     <template #dropdown>
       <el-dropdown-menu>
@@ -44,7 +44,6 @@ import { defineComponent, computed } from 'vue';
 
 import { TabContentProps, TabContentEnum } from '../types';
 import Icon from '/@/components/Icon';
-import { RightOutlined } from '@ant-design/icons-vue';
 
 import { useDesign } from '/@/hooks/web/useDesign';
 import { useTabDropdown } from '../useTabDropdown';
@@ -53,7 +52,7 @@ import { useI18n } from '/@/hooks/web/useI18n';
 import { RouteLocationNormalized } from 'vue-router';
 export default defineComponent({
   name: 'TabContent',
-  components: { RightOutlined, Icon },
+  components: { Icon },
   props: {
     tabItem: {
       type: Object as PropType<RouteLocationNormalized>,

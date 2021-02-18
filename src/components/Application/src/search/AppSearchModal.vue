@@ -23,8 +23,8 @@
               :value="keyword"
               autofocus
             >
-              <template #prefix-icon>
-                <SearchOutlined />
+              <template #prefix>
+                <g-icon icon="ant-design:search-outlined" />
               </template>
             </el-input>
             <span
@@ -61,7 +61,7 @@
               ]"
             >
               <div :class="`${prefixCls}-list__item-icon`">
-                <Icon
+                <g-icon
                   :icon="item.icon || 'mdi:form-select'"
                   :size="20"
                 />
@@ -70,7 +70,7 @@
                 {{ item.name }}
               </div>
               <div :class="`${prefixCls}-list__item-enter`">
-                <Icon
+                <g-icon
                   icon="ant-design:enter-outlined"
                   :size="20"
                 />
@@ -85,10 +85,8 @@
 </template>
 <script lang="ts">
 import { defineComponent, computed, unref, ref, watch, toRef, nextTick } from 'vue';
-import { SearchOutlined } from '@ant-design/icons-vue';
 import { ElInput } from 'element-plus';
 import AppSearchFooter from './AppSearchFooter.vue';
-import Icon from '/@/components/Icon';
 
 import clickOutside from '/@/directives/clickOutside';
 
@@ -100,7 +98,7 @@ import { useAppInject } from '/@/hooks/web/useAppInject';
 
 export default defineComponent({
   name: 'AppSearchModal',
-  components: { Icon, SearchOutlined, AppSearchFooter, ElInput },
+  components: { AppSearchFooter },
   directives: {
     clickOutside,
   },

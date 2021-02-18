@@ -5,7 +5,10 @@
       placement="bottom"
       :show-after="500"
     >
-      <LockOutlined @click="open" />
+      <g-icon
+        icon="ant-design:lock-outlined"
+        @click="open"
+      />
     </el-tooltip>
     <LockAction v-model:show="showRef" />
   </span>
@@ -13,12 +16,10 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { useI18n } from '/@/hooks/web/useI18n';
-import { LockOutlined } from '@ant-design/icons-vue';
 import { createAsyncComponent } from '/@/utils/factory/createAsyncComponent';
 export default defineComponent({
   name: 'Lock',
   components: {
-    LockOutlined,
     LockAction: createAsyncComponent(() => import('./LockModal.vue')),
   },
   setup() {

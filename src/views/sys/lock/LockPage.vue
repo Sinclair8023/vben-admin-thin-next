@@ -5,7 +5,7 @@
       @click="handleShowForm(false)"
       v-show="showDate"
     >
-      <LockOutlined />
+      <g-icon icon="ant-design:lock-outlined" />
       <span>{{ t('sys.lock.unlock') }}</span>
     </div>
 
@@ -101,13 +101,11 @@ import { useI18n } from '/@/hooks/web/useI18n';
 import { useNow } from './useNow';
 import { useDesign } from '/@/hooks/web/useDesign';
 
-import { LockOutlined } from '@ant-design/icons-vue';
 import headerImg from '/@/assets/images/header.jpg';
 
 export default defineComponent({
   name: 'LockPage',
   components: {
-    LockOutlined,
     ElInput,
   },
 

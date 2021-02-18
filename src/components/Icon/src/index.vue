@@ -1,7 +1,7 @@
 <template>
   <span
     ref="elRef"
-    :class="[$attrs.class, 'app-iconify anticon']"
+    :class="getWarpClass"
     :style="getWrapStyle"
   ></span>
 </template>
@@ -27,18 +27,24 @@ export default defineComponent({
     icon: propTypes.string,
     // icon color
     color: propTypes.string,
+    // 显示loading动画
+    loading: propTypes.bool,
+    // 旋转
+    spin: propTypes.bool,
     // icon size
     size: {
       type: [String, Number] as PropType<string | number>,
-      default: 16,
+      default: 16 * 1.2,
     },
     prefix: propTypes.string.def(''),
   },
-  setup(props) {
+  setup(props, { attrs }) {
     const elRef = ref<ElRef>(null);
-
     const getIconRef = computed(() => {
-      const { icon, prefix } = props;
+      const { icon, prefix, loading } = props;
+      if (loading) {
+        return 'ant-design:loading-outlined';
+      }
       return `${prefix ? prefix + ':' : ''}${icon}`;
     });
 
@@ -52,6 +58,10 @@ export default defineComponent({
 
         if (svg) {
           el.textContent = '';
+          svg.style.width = '1em';
+          svg.style.height = '1em';
+          // svg.width = '1em';
+          // svg.height = '1em';
           el.appendChild(svg);
         } else {
           const span = document.createElement('span');
@@ -79,18 +89,38 @@ export default defineComponent({
     );
 
     watch(() => props.icon, update, { flush: 'post' });
-
+    watch(() => props.loading, update, { flush: 'post' });
     onMounted(update);
 
-    return { elRef, getWrapStyle };
+    const getWarpClass = computed(() => {
+      return [
+        attrs.class,
+        'app-iconify anticon',
+        {
+          'is-loading': props.loading,
+          'is-spin': props.spin,
+        },
+      ];
+    });
+    return { elRef, getWrapStyle, getWarpClass };
   },
 });
 </script>
 <style lang="less">
+@keyframes loadingCircle {
+  100% {
+    transform: rotate(1turn);
+  }
+}
 .app-iconify {
   display: inline-block;
   vertical-align: middle;
-  outline: none;
+  &.is-loading,
+  &.is-spin {
+    svg {
+      animation: loadingCircle 1s linear infinite;
+    }
+  }
 }
 
 span.iconify {

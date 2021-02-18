@@ -4,7 +4,6 @@ import { useEventListener } from '/@/hooks/event/useEventListener';
 import { basicProps } from './props';
 import { getSlot } from '/@/utils/helper/tsxHelper';
 import './DragVerify.less';
-import { CheckOutlined, DoubleRightOutlined } from '@ant-design/icons-vue';
 import type { DragVerifyActionType } from './types';
 import { useExpose } from '/@/hooks/core/useExpose';
 export default defineComponent({
@@ -254,9 +253,9 @@ export default defineComponent({
           >
             {getSlot(slots, 'actionIcon', isPassing) ||
               (isPassing ? (
-                <CheckOutlined class={`darg-verify-action__icon`} />
+                <g-icon icon="ant-design:check-outlined" class={`darg-verify-action__icon`} />
               ) : (
-                <DoubleRightOutlined class={`darg-verify-action__icon`} />
+                <g-icon icon="ant-design:double-right-outlined" class={`darg-verify-action__icon`} />
               ))}
           </div>
         );

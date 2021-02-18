@@ -14,7 +14,10 @@
           type="danger"
           :class="`${prefixCls}__dot`"
         >
-          <BellOutlined />
+          <g-icon
+            icon="ant-design:bell-outlined"
+            style="margin-top:-2px"
+          />
         </el-badge>
       </template>
       <el-tabs>
@@ -34,13 +37,12 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { BellOutlined } from '@ant-design/icons-vue';
 import { tabListData } from './data';
 import NoticeList from './NoticeList.vue';
 import { useDesign } from '/@/hooks/web/useDesign';
 
 export default defineComponent({
-  components: { BellOutlined, NoticeList },
+  components: { NoticeList },
   setup() {
     const { prefixCls } = useDesign('header-notify');
 

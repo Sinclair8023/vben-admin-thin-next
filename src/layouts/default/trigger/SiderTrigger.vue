@@ -1,18 +1,22 @@
 <template>
-  <DoubleRightOutlined v-if="getCollapsed" />
-  <DoubleLeftOutlined v-else />
+  <g-icon
+    icon="ant-design:double-right-outlined"
+    v-if="getCollapsed"
+  />
+  <g-icon
+    icon="ant-design:double-left-outlined"
+    v-else
+  />
 </template>
 <script lang="ts">
-  import { defineComponent } from 'vue';
-  import { DoubleRightOutlined, DoubleLeftOutlined } from '@ant-design/icons-vue';
-  import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
+import { defineComponent } from 'vue';
+import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
 
-  export default defineComponent({
-    name: 'SiderTrigger',
-    components: { DoubleRightOutlined, DoubleLeftOutlined },
-    setup() {
-      const { getCollapsed } = useMenuSetting();
-      return { getCollapsed };
-    },
-  });
+export default defineComponent({
+  name: 'SiderTrigger',
+  setup() {
+    const { getCollapsed } = useMenuSetting();
+    return { getCollapsed };
+  },
+});
 </script>

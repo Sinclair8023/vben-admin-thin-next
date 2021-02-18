@@ -1,7 +1,6 @@
 <script lang="tsx">
 import { defineComponent, ref, unref } from 'vue';
 import { ElTooltip } from 'element-plus';
-import { SearchOutlined } from '@ant-design/icons-vue';
 import AppSearchModal from './AppSearchModal.vue';
 
 import { useDesign } from '/@/hooks/web/useDesign';
@@ -12,7 +11,6 @@ export default defineComponent({
   name: 'AppSearch',
   components: {
     AppSearchModal,
-    SearchOutlined,
     ElTooltip,
   },
   setup() {
@@ -36,7 +34,7 @@ export default defineComponent({
       return (
         <div class={prefixCls} onClick={handleSearch}>
           <ElTooltip content={t('common.searchText')}>
-            <SearchOutlined />
+            <g-icon icon="ant-design:search-outlined" />
           </ElTooltip>
           <AppSearchModal onClose={handleClose} visible={unref(showModal)} />
         </div>
