@@ -1,8 +1,10 @@
 <template>
   <el-dialog
+    title="提示"
+    width="30%"
     :model-value="show"
     :class="prefixCls"
-    @close="handleClose"
+    :before-close="handleClose"
   >
     <div :class="`${prefixCls}__entry`">
       <div :class="`${prefixCls}__header`">
@@ -16,7 +18,7 @@
       </div>
       <el-form
         label-position="top"
-        :ref="formRef"
+        ref="formRef"
       >
         <el-form-item
           prop="password"
@@ -42,7 +44,7 @@
 
 </template>
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
+import { defineComponent, computed, ref, unref } from 'vue';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { useDesign } from '/@/hooks/web/useDesign';
 
@@ -53,38 +55,39 @@ import { propTypes } from '/@/utils/propTypes';
 export default defineComponent({
   name: 'LockModal',
   props: {
-    show: propTypes.bool,
+    show: Boolean,
   },
-  emits: ['close'],
+  emits: ['update:show'],
   setup(_, { emit }) {
+    const { t } = useI18n();
     const { prefixCls } = useDesign('header-lock-modal');
-    const formRef = ref<typeof ElForm>();
-    const form = reactive<{ password?: string }>({});
+    const formRef = ref();
+    const password = ref<string>('');
     const getRealName = computed(() => {
       return userStore.getUserInfoState?.realName;
     });
-
+    function handleClose(done) {
+      emit('update:show', false);
+      done?.();
+    }
     async function handleLock() {
       await unref(formRef)!.validate();
-      const values = form;
-      const password: string | undefined = values.password;
       lockStore.commitLockInfoState({
         isLock: true,
-        pwd: password,
+        pwd: unref(password),
       });
       unref(formRef)!.resetFields();
-    }
-    function handleClose() {
-      emit('close');
+      handleClose();
     }
     return {
+      t,
       prefixCls,
       getRealName,
       handleLock,
-      handleClose,
       headerImg,
       formRef,
-      form,
+      password,
+      handleClose,
     };
   },
 });

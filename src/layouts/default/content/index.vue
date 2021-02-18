@@ -1,6 +1,9 @@
 <template>
   <div :class="[prefixCls, getLayoutContentMode]">
-    <transition v-if="getOpenPageLoading" name="fade">
+    <transition
+      v-if="getOpenPageLoading"
+      name="fade"
+    >
       <div
         v-if="getPageLoading"
         :class="`${prefixCls}-loading`"
@@ -43,7 +46,8 @@ export default defineComponent({
   position: relative;
   flex: 1 1 auto;
   min-height: 0;
-
+  padding: 8px;
+  background: #f0f2f5;
   &.fixed {
     width: 1200px;
     margin: 0 auto;

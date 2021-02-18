@@ -11,7 +11,7 @@ const dashboard: AppRouteModule = {
   meta: {
     icon: 'bx:bx-home',
     title: t('routes.dashboard.welcome'),
-    affix: true,
+    affix: false,
   },
   children: [
     {

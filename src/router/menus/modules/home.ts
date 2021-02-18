@@ -13,7 +13,7 @@ const menu: MenuModule[] = [
     orderNo: 1,
     menu: {
       path: '/home/house',
-      name: 'house123',
+      name: 'house',
     },
   },
 ];
