@@ -1,5 +1,5 @@
 <template>
-  <el-dropdown>
+  <el-dropdown @command="handleMenuClick">
     <span :class="[prefixCls, `${prefixCls}--${theme}`]">
       <img
         :class="`${prefixCls}__header`"
@@ -11,7 +11,7 @@
     </span>
 
     <template #dropdown>
-      <el-dropdown-menu @command="handleMenuClick">
+      <el-dropdown-menu>
         <el-dropdown-item
           key="doc"
           v-if="getShowDoc"

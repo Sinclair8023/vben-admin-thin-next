@@ -23,6 +23,7 @@
         <el-form-item
           prop="password"
           required
+          :label="t('layout.header.lockScreenPassword')"
         >
           <el-input
             show-Password
@@ -34,7 +35,6 @@
       <div :class="`${prefixCls}__footer`">
         <el-button
           type="primary"
-          class="mt-2"
           @click="handleLock"
         >
           {{ t('layout.header.lockScreenBtn') }}
@@ -93,16 +93,17 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="less">
+<style lang="less" scoped>
 @prefix-cls: ~'@{namespace}-header-lock-modal';
 
 .@{prefix-cls} {
   &__entry {
     position: relative;
-    height: 240px;
+    height: 280px;
     padding: 130px 30px 60px 30px;
     background: #fff;
     border-radius: 10px;
+    margin-top: -30px;
   }
 
   &__header {
@@ -124,6 +125,9 @@ export default defineComponent({
 
   &__footer {
     text-align: center;
+    .el-button {
+      width: 100%;
+    }
   }
 }
 </style>
