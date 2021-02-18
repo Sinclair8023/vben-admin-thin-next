@@ -26,7 +26,7 @@
               <el-input
                 size="large"
                 v-model="formData.account"
-                placeholder="username: vben"
+                placeholder="username: yoda"
               />
             </el-form-item>
             <el-form-item name="password">
@@ -106,7 +106,7 @@ export default defineComponent({
     const { t } = useI18n();
 
     const formData = reactive({
-      account: 'vben',
+      account: 'yoda',
       password: '123456',
     });
 

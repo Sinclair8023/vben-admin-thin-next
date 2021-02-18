@@ -71,12 +71,6 @@ export default defineComponent({
 <style lang="less" scoped>
 @prefix-cls: ~'@{namespace}-app-locale-picker';
 
-:global(.@{prefix-cls}-overlay) {
-  .ant-dropdown-menu-item {
-    min-width: 160px;
-  }
-}
-
 .@{prefix-cls} {
   display: flex;
   align-items: center;

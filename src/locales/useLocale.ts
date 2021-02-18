@@ -6,10 +6,9 @@ import type { Ref } from 'vue';
 
 import { unref } from 'vue';
 import { useLocaleSetting } from '/@/hooks/setting/useLocaleSetting';
-import { locale } from 'element-plus'
+import { locale } from 'element-plus';
 import { i18n } from './setupI18n';
-
-import 'moment/dist/locale/zh-cn';
+import 'dayjs/locale/zh-cn';
 
 export function useLocale() {
   const { getLang, getLocale, setLocale: setLocalSetting } = useLocaleSetting();

@@ -1,6 +1,5 @@
 <template>
   <el-dropdown
-    :dropMenuList="getDropMenuList"
     :trigger="getTrigger"
     @command="handleMenuEvent"
     :class="`${prefixCls}__tools`"
@@ -18,7 +17,11 @@
       v-else
       @click="handleContext"
     >
-      <g-icon icon="ant-design:right-outlined" />
+      <g-icon
+        prefix="ant-design"
+        icon="right-outlined"
+        rotate="90"
+      />
     </span>
     <template #dropdown>
       <el-dropdown-menu>

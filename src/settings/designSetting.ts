@@ -1,5 +1,5 @@
 export default {
-  prefixCls: 'vben',
+  prefixCls: 'yoda',
 };
 
 // app theme preset color

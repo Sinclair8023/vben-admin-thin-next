@@ -29,8 +29,10 @@ export default defineComponent({
     color: propTypes.string,
     // 显示loading动画
     loading: propTypes.bool,
-    // 旋转
+    // 显示旋转动画
     spin: propTypes.bool,
+    // 旋转角度
+    rotate: propTypes.number,
     // icon size
     size: {
       type: [String, Number] as PropType<string | number>,
@@ -75,7 +77,7 @@ export default defineComponent({
 
     const getWrapStyle = computed(
       (): CSSProperties => {
-        const { size, color } = props;
+        const { size, color, rotate } = props;
         let fs = size;
         if (isString(size)) {
           fs = parseInt(size, 10);
@@ -84,6 +86,7 @@ export default defineComponent({
           fontSize: `${fs}px`,
           color,
           display: 'inline-flex',
+          transform: `rotate(${rotate || 0}deg)`,
         };
       }
     );

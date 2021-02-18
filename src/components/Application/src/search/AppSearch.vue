@@ -34,7 +34,7 @@ export default defineComponent({
       return (
         <div class={prefixCls} onClick={handleSearch}>
           <ElTooltip content={t('common.searchText')}>
-            <g-icon icon="ant-design:search-outlined" />
+            <g-icon prefix="ant-design" icon="search-outlined" />
           </ElTooltip>
           <AppSearchModal onClose={handleClose} visible={unref(showModal)} />
         </div>

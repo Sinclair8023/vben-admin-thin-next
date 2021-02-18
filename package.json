@@ -1,6 +1,6 @@
 {
-  "name": "vben-admin",
-  "version": "2.0.0-rc.18",
+  "name": "yoda-admin",
+  "version": "0.0.1",
   "scripts": {
     "bootstrap": "yarn install",
     "serve": "vite",
@@ -27,7 +27,6 @@
   "dependencies": {
     "@iconify/iconify": "^2.0.0-rc.6",
     "@vueuse/core": "^4.1.0",
-    "ant-design-vue": "2.0.0",
     "axios": "^0.21.1",
     "crypto-es": "^1.2.6",
     "element-plus": "^1.0.2-beta.32",
@@ -45,6 +44,7 @@
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
+    "@ant-design/colors": "^6.0.0",
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "@iconify/json": "^1.1.299",
@@ -95,7 +95,7 @@
     "stylelint-order": "^4.1.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.5",
-    "vite": "2.0.0-beta.69",
+    "vite": "2.0.0",
     "vite-plugin-compression": "^0.2.1",
     "vite-plugin-html": "^2.0.0",
     "vite-plugin-imagemin": "^0.2.6",

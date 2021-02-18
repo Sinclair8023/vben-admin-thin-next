@@ -109,22 +109,11 @@
 
     }
 
-    .ant-tabs-nav > div:nth-child(1) {
-      padding: 0 6px;
-
-      .ant-tabs-tab {
-        margin-right: 3px !important;
-      }
-    }
   }
 
-  .ant-tabs-tab:not(.ant-tabs-tab-active) {
-    .anticon-close {
+  .el-tabs__item:not(.is-active) {
+    .el-icon-close {
       font-size: 12px;
-
-      svg {
-        width: 0.6em;
-      }
     }
   }
 
@@ -140,7 +129,7 @@
   }
 
   &--hide-close {
-    .ant-tabs-close-x {
+    .el-icon-close {
       opacity: 0 !important;
     }
   }
@@ -160,16 +149,6 @@
 
       &:hover {
         color: @text-color-base;
-      }
-
-      span[role='img'] {
-        transform: rotate(90deg);
-      }
-    }
-
-    &__extra-redo {
-      span[role='img'] {
-        transform: rotate(0deg);
       }
     }
 

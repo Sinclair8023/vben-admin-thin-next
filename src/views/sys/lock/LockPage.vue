@@ -5,7 +5,10 @@
       @click="handleShowForm(false)"
       v-show="showDate"
     >
-      <g-icon icon="ant-design:lock-outlined" />
+      <g-icon
+        prefix="ant-design"
+        icon="lock-outlined"
+      />
       <span>{{ t('sys.lock.unlock') }}</span>
     </div>
 
