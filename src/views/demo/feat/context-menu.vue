@@ -1,5 +1,5 @@
 <template>
-  <PageWrapper title="全屏示例">
+  <div title="全屏示例">
     <CollapseContainer
       class="px-20 bg-white w-full h-32 rounded-md"
       title="Window Full Screen"
@@ -51,16 +51,15 @@
         class="mr-2"
       > Exit Dom Full Screen </el-button>
     </div>
-  </PageWrapper>
+  </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
 import { CollapseContainer } from '/@/components/Container/index';
 import { useFullscreen } from '/@/hooks/web/useFullScreen';
-import { PageWrapper } from '/@/components/Page';
 
 export default defineComponent({
-  components: { CollapseContainer, PageWrapper },
+  components: { CollapseContainer },
   setup() {
     const domRef = ref<Nullable<HTMLElement>>(null);
     const { enterFullscreen, toggleFullscreen, isFullscreenRef, exitFullscreen } = useFullscreen();

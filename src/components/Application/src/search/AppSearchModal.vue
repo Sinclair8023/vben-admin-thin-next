@@ -15,11 +15,13 @@
         >
           <div :class="`${prefixCls}-input__wrapper`">
             <el-input
+              ref="inputRef"
               :class="`${prefixCls}-input`"
               :placeholder="t('common.searchText')"
               allow-clear
               @input="handleSearch"
               :value="keyword"
+              autofocus
             >
               <template #prefix-icon>
                 <SearchOutlined />
@@ -82,7 +84,7 @@
   </Teleport>
 </template>
 <script lang="ts">
-import { defineComponent, computed, unref, ref } from 'vue';
+import { defineComponent, computed, unref, ref, watch, toRef, nextTick } from 'vue';
 import { SearchOutlined } from '@ant-design/icons-vue';
 import { ElInput } from 'element-plus';
 import AppSearchFooter from './AppSearchFooter.vue';
@@ -109,11 +111,17 @@ export default defineComponent({
   emits: ['close'],
   setup(_, { emit }) {
     const scrollWrap = ref<ElRef>(null);
+    const inputRef = ref<HTMLInputElement>(null);
     const { prefixCls } = useDesign('app-search-modal');
     const { t } = useI18n();
     const [refs, setRefs] = useRefs();
     const { getIsMobile } = useAppInject();
 
+    watch(toRef(_, 'visible'), (newVal, oldVal) => {
+      if (newVal) {
+        nextTick(() => unref(inputRef).focus());
+      }
+    });
     const {
       handleSearch,
       searchResult,
@@ -135,12 +143,10 @@ export default defineComponent({
         },
       ];
     });
-
     function handleClose() {
       searchResult.value = [];
       emit('close');
     }
-    console.log(keyword);
     return {
       t,
       keyword,
@@ -155,6 +161,7 @@ export default defineComponent({
       scrollWrap,
       handleMouseenter,
       handleClose,
+      inputRef,
     };
   },
 });

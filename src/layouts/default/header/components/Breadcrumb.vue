@@ -164,7 +164,7 @@ export default defineComponent({
   }
 
   &--light {
-    .ant-breadcrumb-link {
+    .el-breadcrumb__inner {
       color: @breadcrumb-item-normal-color;
 
       a {
@@ -176,13 +176,13 @@ export default defineComponent({
       }
     }
 
-    .ant-breadcrumb-separator {
+    .el-breadcrumb__separator {
       color: @breadcrumb-item-normal-color;
     }
   }
 
   &--dark {
-    .ant-breadcrumb-link {
+    .el-breadcrumb__inner {
       color: rgba(255, 255, 255, 0.6);
 
       a {
@@ -194,7 +194,7 @@ export default defineComponent({
       }
     }
 
-    .ant-breadcrumb-separator,
+    .el-breadcrumb__separator,
     .anticon {
       color: rgba(255, 255, 255, 0.8);
     }
