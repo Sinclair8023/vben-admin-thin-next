@@ -1,5 +1,5 @@
 <template>
-  <span @click="show">
+  <span @click="open">
     <el-tooltip
       :content="t('layout.header.tooltipLock')"
       placement="bottom"
@@ -8,7 +8,7 @@
       <LockOutlined />
     </el-tooltip>
   </span>
-  <LockAction v-model="showRef" />
+  <LockAction v-model:show="showRef" />
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
@@ -24,9 +24,13 @@ export default defineComponent({
   setup() {
     const { t } = useI18n();
     const showRef = ref<boolean>(false);
+    const open = () => {
+      showRef.value = true;
+    };
     return {
       t,
       showRef,
+      open,
     };
   },
 });

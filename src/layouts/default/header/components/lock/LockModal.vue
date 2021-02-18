@@ -1,9 +1,8 @@
 <template>
   <el-dialog
-    title="提示"
-    width="30%"
+    :title="t('layout.header.lockScreen')"
     :model-value="show"
-    :class="prefixCls"
+    width="30%"
     :before-close="handleClose"
   >
     <div :class="`${prefixCls}__entry`">
@@ -18,7 +17,8 @@
       </div>
       <el-form
         label-position="top"
-        ref="formRef"
+        ref="lockForm"
+        :model="formRef"
       >
         <el-form-item
           prop="password"
@@ -26,7 +26,7 @@
         >
           <el-input
             show-Password
-            v-model="form.password"
+            v-model="formRef.password"
           />
         </el-form-item>
       </el-form>
@@ -37,6 +37,7 @@
           class="mt-2"
           @click="handleLock"
         >
+          {{ t('layout.header.lockScreenBtn') }}
         </el-button>
       </div>
     </div>
@@ -44,7 +45,7 @@
 
 </template>
 <script lang="ts">
-import { defineComponent, computed, ref, unref } from 'vue';
+import { defineComponent, computed, ref, unref, reactive } from 'vue';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { useDesign } from '/@/hooks/web/useDesign';
 
@@ -61,22 +62,21 @@ export default defineComponent({
   setup(_, { emit }) {
     const { t } = useI18n();
     const { prefixCls } = useDesign('header-lock-modal');
-    const formRef = ref();
-    const password = ref<string>('');
+    const lockForm = ref(null);
+    const formRef = reactive({ password: '' });
     const getRealName = computed(() => {
       return userStore.getUserInfoState?.realName;
     });
-    function handleClose(done) {
+    function handleClose() {
       emit('update:show', false);
-      done?.();
     }
     async function handleLock() {
-      await unref(formRef)!.validate();
+      await unref(lockForm)!.validate();
       lockStore.commitLockInfoState({
         isLock: true,
-        pwd: unref(password),
+        pwd: formRef.password,
       });
-      unref(formRef)!.resetFields();
+      unref(lockForm)!.resetFields();
       handleClose();
     }
     return {
@@ -85,8 +85,8 @@ export default defineComponent({
       getRealName,
       handleLock,
       headerImg,
+      lockForm,
       formRef,
-      password,
       handleClose,
     };
   },
