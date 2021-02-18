@@ -1,14 +1,14 @@
 <template>
-  <span @click="open">
+  <span>
     <el-tooltip
       :content="t('layout.header.tooltipLock')"
       placement="bottom"
       :show-after="500"
     >
-      <LockOutlined />
+      <LockOutlined @click="open" />
     </el-tooltip>
+    <LockAction v-model:show="showRef" />
   </span>
-  <LockAction v-model:show="showRef" />
 </template>
 <script lang="ts">
 import { defineComponent, ref } from 'vue';

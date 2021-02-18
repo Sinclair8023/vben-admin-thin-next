@@ -67,7 +67,8 @@ export default defineComponent({
     const getRealName = computed(() => {
       return userStore.getUserInfoState?.realName;
     });
-    function handleClose() {
+    function handleClose(done) {
+      done();
       emit('update:show', false);
     }
     async function handleLock() {
